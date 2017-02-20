@@ -46,11 +46,11 @@
 
     /* Real motorway, speed limit 120 */
     [feature = 'highway_motorway'] {
-      line-color: #333;
-      line-width: 3;
+      line-color: #222;
+      line-width: 2.3;
 
-      [zoom >= 14] { line-width: 10; }
-      [zoom >= 15] { line-width: 4; }
+      [zoom >= 14] { line-width: 4; }
+      [zoom >= 15] { line-width: 3; }
     }
 
     /*
@@ -58,66 +58,44 @@
     e.g. Hämeenlinnantie
     */
     [feature = 'highway_trunk'] {
-      line-color: #222;
-      line-width: 3;
+      line-color: #555;
+      line-width: 2;
 
-      [zoom >= 14] { line-width: 10; }
-      [zoom >= 15] { line-width: 4; }
+      [zoom >= 14] { line-width: 2.5; }
+      [zoom >= 15] { line-width: 3; }
     }
 
 
     /* e.g. Mannerheimintie, speed limit 40-80 */
-    [feature = 'highway_primary'] {
-      line-color: #333;
-      line-width: 3;
-
-      [zoom >= 14] { line-width: 10; }
-      [zoom >= 15] { line-width: 4; }
-    }
-
+    [feature = 'highway_primary'],
     /* e.g. Kaivokatu, speed limit 40-80 */
-    [feature = 'highway_secondary'] {
-      line-color: #333;
-      line-width: 1;
-
-      [zoom >= 14] { line-width: 10; }
-      [zoom >= 15] { line-width: 4; }
-    }
-
+    [feature = 'highway_secondary'],
     /* e.g. Simonkatu, speed limit 30-80 */
     [feature = 'highway_tertiary'] {
-      line-color: #333;
-      line-width: 1;
+      line-color: #666;
+      line-width: 0.8;
 
-      [zoom >= 14] { line-width: 10; }
       [zoom >= 15] { line-width: 4; }
     }
 
+
     /* e.g. Annankatu, speed limit 30-60 */
-    [feature = 'highway_residential'] {
-      line-color: #444;
-      line-width: 1;
-
-      [zoom >= 14] { line-width: 1.10; }
-      [zoom >= 15] { line-width: 1.5; }
-    }
-
+    [feature = 'highway_residential'],
     /*
     Street in a residental area, speed limit max 30km/h
     e.g. Paimentie
     */
-    [feature = 'highway_living_street'] {
-      line-color: #444;
-      line-width: 0.5;
-    }
-
-
+    [feature = 'highway_living_street'],
     [feature = 'highway_unclassified'],
     [feature = 'highway_road'],
     [feature = 'highway_service']
     {
-      line-color: #555;
-      line-width: 0.5;
+      line-color: #999;
+      line-width: 0.4;
+
+      [zoom >= 10] {
+        line-width: 0.5;
+      }
     }
 
     /*
@@ -159,8 +137,12 @@
     [feature = 'railway_disused'],
     [feature = 'railway_platform'],
     [feature = 'railway_turntable'] {
-      line-color: #444;
+      line-color: #aaa;
       line-width: 0.5;
+
+      [zoom >= 10] {
+        line-width: 0.4;
+      }
     }
 
     [feature = 'aeroway_runway'],
