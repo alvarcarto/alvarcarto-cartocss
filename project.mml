@@ -49,6 +49,7 @@ Layer:
   - id: world
     name: world
     geometry: polygon
+    srs: "+init=epsg:3857"
     <<: *extents
     Datasource:
       file: data/simplified-land-polygons-complete-3857/simplified_land_polygons.shp
@@ -58,6 +59,7 @@ Layer:
   - id: coast-poly
     name: coast-poly
     geometry: polygon
+    srs: "+init=epsg:3857"
     <<: *extents
     Datasource:
       file: data/land-polygons-split-3857/land_polygons.shp
