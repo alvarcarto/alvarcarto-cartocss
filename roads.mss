@@ -47,7 +47,10 @@
     /* Real motorway, speed limit 120 */
     [feature = 'highway_motorway'] {
       line-color: #222;
-      line-width: 15;
+      line-width: 2.3;
+
+      [zoom >= 14] { line-width: 4; }
+      [zoom >= 15] { line-width: 3; }
     }
 
     /*
@@ -55,8 +58,11 @@
     e.g. Hämeenlinnantie
     */
     [feature = 'highway_trunk'] {
-      line-color: #333;
-      line-width: 10;
+      line-color: #555;
+      line-width: 2;
+
+      [zoom >= 14] { line-width: 2.5; }
+      [zoom >= 15] { line-width: 3; }
     }
 
 
@@ -66,8 +72,10 @@
     [feature = 'highway_secondary'],
     /* e.g. Simonkatu, speed limit 30-80 */
     [feature = 'highway_tertiary'] {
-      line-color: #333;
-      line-width: 4;
+      line-color: #666;
+      line-width: 0.8;
+
+      [zoom >= 15] { line-width: 4; }
     }
 
 
@@ -82,8 +90,12 @@
     [feature = 'highway_road'],
     [feature = 'highway_service']
     {
-      line-color: #444;
-      line-width: 3;
+      line-color: #999;
+      line-width: 0.4;
+
+      [zoom >= 10] {
+        line-width: 0.5;
+      }
     }
 
     /*
@@ -97,9 +109,11 @@
     [feature = 'highway_footway'],
     [feature = 'highway_cycleway'],
     [feature = 'highway_track'] {
-      line-color: #555;
-      line-width: 0.5;
-      line/line-dasharray: 2,2;
+      [zoom>=16] {
+        line-color: #555;
+        line-width: 0.5;
+        line/line-dasharray: 2,2;
+      }
     }
 
     /* Trams */
@@ -123,8 +137,12 @@
     [feature = 'railway_disused'],
     [feature = 'railway_platform'],
     [feature = 'railway_turntable'] {
-      line-color: #444;
-      line-width: 2;
+      line-color: #aaa;
+      line-width: 0.5;
+
+      [zoom >= 10] {
+        line-width: 0.4;
+      }
     }
 
     [feature = 'aeroway_runway'],
