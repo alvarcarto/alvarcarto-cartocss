@@ -47,15 +47,15 @@
 
     /* Real motorway, speed limit 120 */
     [feature = 'highway_motorway'] {
-      line-color: #333;
+      line-color: #fff;
       line-width: 0.6;
 
       [zoom >= 10] {
-        line-color: #111;
+        line-color: #fff;
         line-width: 1.8;
       }
       [zoom >= 12] {
-        line-color: #111;
+        line-color: #fff;
         line-width: 2;
       }
       [zoom >= 14] { line-width: 3; }
@@ -67,15 +67,15 @@
     e.g. Hämeenlinnantie
     */
     [feature = 'highway_trunk'] {
-      line-color: #555;
+      line-color: #fff;
       line-width: 0.5;
 
       [zoom >= 10] {
-        line-color: #222;
+        line-color: #fff;
         line-width: 1.6;
       }
       [zoom >= 12] {
-        line-color: #111;
+        line-color: #fff;
         line-width: 1.8;
       }
       [zoom >= 14] { line-width: 2.8; }
@@ -90,23 +90,23 @@
     /* e.g. Simonkatu, speed limit 30-80 */
     [feature = 'highway_tertiary'] {
       [zoom >= 8] {
-        line-color: #555;
+        line-color: #fff;
         line-width: 0.5;
       }
       [zoom >= 10] {
-        line-color: #999;
+        line-color: #fff;
         line-width: 0.8;
       }
       [zoom >= 11] {
-        line-color: #555;
+        line-color: #fff;
         line-width: 1.2;
       }
       [zoom >= 12] {
-        line-color: #333;
+        line-color: #fff;
         line-width: 1.6;
       }
       [zoom >= 14] {
-        line-color: #222;
+        line-color: #fff;
         line-width: 1.8;
       }
       [zoom >= 15] { line-width: 2; }
@@ -125,19 +125,19 @@
     [feature = 'highway_road'],
     [feature = 'highway_service'] {
       [zoom >= 9] {
-        line-color: #999;
+        line-color: #fff;
         line-width: 0.1;
       }
       [zoom >= 10] {
-        line-color: #aaa;
+        line-color: #fff;
         line-width: 0.2;
       }
       [zoom >= 11] {
-        line-color: #666;
+        line-color: #fff;
         line-width: 0.5;
       }
       [zoom >= 12] {
-        line-color: #444;
+        line-color: #fff;
       }
       [zoom >= 13] { line-width: 1; }
     }
@@ -154,7 +154,7 @@
     [feature = 'highway_cycleway'],
     [feature = 'highway_track'] {
       [zoom>=16] {
-        line-color: #777;
+        line-color: #fff;
         line-width: 0.5;
         line/line-dasharray: 2,2;
       }
@@ -181,18 +181,18 @@
     [feature = 'railway_disused'],
     [feature = 'railway_platform'],
     [feature = 'railway_turntable'] {
-      line-color: #999;
+      line-color: #fff;
       line-width: 0.2;
 
       [zoom >= 10] {
-        line-color: #777;
+        line-color: #fff;
         line-width: 0.4;
       }
     }
 
     [feature = 'aeroway_runway'],
     [feature = 'aeroway_taxiway'] {
-      line-color: #666;
+      line-color: #fff;
       line-width: 0.4;
     }
   }
@@ -200,6 +200,6 @@
 
 #junctions {
   [highway = 'motorway_junction'] {
-    line-color: #aaa;
+    line-color: #fff;
   }
 }

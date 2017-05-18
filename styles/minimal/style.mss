@@ -2,11 +2,11 @@ Map {
   background-color: @water-color;
 }
 
-@water-color: #eee;
-@land-color: #ffffff;
+@water-color: #fff;
+@land-color: rgba(255, 255, 255, 0);
 
 @standard-halo-radius: 1;
 @standard-halo-fill: rgba(255,255,255,0.6);
 
-@glacier: #eee;
-@glacier-line: #ddd;
+@glacier: #fff;
+@glacier-line: #fff;

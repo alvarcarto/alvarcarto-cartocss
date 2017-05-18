@@ -180,7 +180,7 @@
 
   [waterway = 'derelict_canal'][zoom >= 12] {
     line-width: 1.5;
-    line-color: #b5e4d0;
+    line-color: #fff;
     line-dasharray: 4,4;
     line-opacity: 0.5;
     line-join: round;
