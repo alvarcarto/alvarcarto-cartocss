@@ -1,5 +1,5 @@
 @building-fill: #fff; //Lch(84, 5, 70)
-@building-line: darken(@building-fill, 25%);
+@building-line: darken(@building-fill, 15%);
 @building-low-zoom: darken(@building-fill, 4%);
 
 @building-major-fill: darken(@building-fill, 5%);
@@ -10,7 +10,7 @@
 
 
 #buildings {
-  [zoom >= 13] {
+  [zoom >= 17] {
     polygon-fill: @building-low-zoom;
     polygon-clip: false;
     [zoom >= 15] {
@@ -23,11 +23,11 @@
 }
 
 #buildings-major {
-  [zoom >= 13] {
+  [zoom >= 17] {
     [aeroway = 'terminal'] {
       polygon-fill: @building-aeroway-fill;
       polygon-clip: false;
-      [zoom >= 15] {
+      [zoom >= 17] {
         line-width: .75;
         line-clip: false;
         line-color: @building-aeroway-line;
@@ -37,7 +37,7 @@
     [building = 'train_station'] {
       polygon-fill: @building-major-fill;
       polygon-clip: false;
-      [zoom >= 15] {
+      [zoom >= 17] {
         line-width: .75;
         line-clip: false;
         line-color: @building-major-line;
@@ -47,7 +47,7 @@
 }
 
 #bridge {
-  [zoom >= 12] {
+  [zoom >= 15] {
     polygon-fill: #B8B8B8;
   }
 }
