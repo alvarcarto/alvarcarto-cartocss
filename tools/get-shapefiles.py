@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# https://raw.githubusercontent.com/gravitystorm/openstreetmap-carto/master/scripts/get-shapefiles.py
+
 # This script generates and populates the 'data' directory with all needed
 # shapefiles.
 

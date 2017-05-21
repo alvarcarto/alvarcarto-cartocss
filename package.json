@@ -1,5 +1,5 @@
 {
-  "name": "render",
+  "name": "alvarcarto-cartocss",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,6 +7,7 @@
     "node": "4.1.2"
   },
   "scripts": {
+    "watch": "npm run build && chokidar \"styles/**/*.mss\" \"styles/**/*.mml\" -c \"npm run build\"",
     "build": "./tools/build.sh",
     "test": "echo \"Styles are not tested. At some point they will be tested through alvarcarto-render-service.\""
   },
@@ -15,5 +16,8 @@
   "dependencies": {
     "carto": "^0.16.3",
     "lodash": "^4.15.0"
+  },
+  "devDependencies": {
+    "chokidar-cli": "^1.2.0"
   }
 }

@@ -5,4 +5,4 @@ set -x
 
 mkdir -p dist
 carto styles/bw/project.mml > dist/bw.xml
-carto styles/minimal/project.mml > dist/minimal.xml
+carto styles/transparent/project.mml > dist/transparent.xml
