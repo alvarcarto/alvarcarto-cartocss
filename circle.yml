@@ -1,0 +1,10 @@
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - npm install
+      - carto styles/bw/project.mml > styles/bw.xml
+      - carto styles/minimal/project.mml > styles/minimal.xml
+      - scp -r styles/*.xml alvar@$SERVER_HOST:/mapnik-styles
+      - ssh alvar@$SERVER_HOST "pm2 restart all"
