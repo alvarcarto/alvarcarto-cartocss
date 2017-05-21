@@ -1,5 +1,6 @@
 .thumb.png
 layers/
+dist
 data/
 *.xml
 node_modules/

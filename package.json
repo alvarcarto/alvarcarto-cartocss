@@ -7,6 +7,7 @@
     "node": "4.1.2"
   },
   "scripts": {
+    "build": "./tools/build.sh",
     "test": "echo \"Styles are not tested. At some point they will be tested through alvarcarto-render-service.\""
   },
   "author": "",
