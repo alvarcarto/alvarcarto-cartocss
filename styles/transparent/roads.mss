@@ -1,7 +1,6 @@
-.roads-low-zoom[zoom < 8],
-.roads-fill[zoom >= 8],
-.bridges-fill[zoom >= 8],
-.tunnels-fill[zoom >= 8] {
+.roads-fill[zoom >= 5],
+.bridges-fill[zoom >= 5],
+.tunnels-fill[zoom >= 5] {
   ::fill {
     /*
     All features for reference:
@@ -89,6 +88,9 @@
     [feature = 'highway_secondary'],
     /* e.g. Simonkatu, speed limit 30-80 */
     [feature = 'highway_tertiary'] {
+      line-color: #fff;
+      line-width: 0.3;
+
       [zoom >= 8] {
         line-color: #fff;
         line-width: 0.5;
@@ -124,7 +126,10 @@
     [feature = 'highway_unclassified'],
     [feature = 'highway_road'],
     [feature = 'highway_service'] {
-      [zoom >= 9] {
+      line-color: #fff;
+      line-width: 0.1;
+
+      [zoom >= 8] {
         line-color: #fff;
         line-width: 0.1;
       }

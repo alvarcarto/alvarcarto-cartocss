@@ -7,6 +7,7 @@
     [zoom >= 3] {
       line-width: 0.4;
     }
+    line-color: #fff;
   }
 }
 
@@ -33,7 +34,7 @@
     [ice_edge = 'ice_ocean'],
     [ice_edge = 'ice_land'] {
       line-width: 0.375;
-      line-color: #ddd;
+      line-color: @glacier-line;
       [zoom >= 8] {
         line-width: 0.5;
       }
@@ -47,6 +48,6 @@
 
 #builtup {
   [zoom >= 8][zoom < 10] {
-    polygon-fill: #ddd;
+    polygon-fill: #fff;
   }
 }

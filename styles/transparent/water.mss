@@ -131,7 +131,7 @@
       line-dasharray: 4,2;
       line-cap: butt;
       line-join: miter;
-      a/line-color: #f3f7f7;
+      a/line-color: #fff;
       a/line-width: 1;
       [zoom >= 14] { a/line-width: 2; }
       [zoom >= 15] { a/line-width: 3; }
@@ -173,7 +173,7 @@
         line-dasharray: 4,2;
         a/line-width: 1;
         [waterway = 'stream'] { a/line-width: 2; }
-        a/line-color: #f3f7f7;
+        a/line-color: #fff;
       }
     }
   }
