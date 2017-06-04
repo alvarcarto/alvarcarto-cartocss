@@ -4,7 +4,7 @@ set -e
 set -x
 
 mkdir -p dist
-rm dist/*.xml
+rm -f dist/*.xml
 carto styles/black/project.mml > dist/black.xml
 carto styles/bw/project.mml > dist/bw.xml
 carto styles/copper/project.mml > dist/copper.xml
