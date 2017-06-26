@@ -5,7 +5,7 @@
       line-width: 0.3;
     }
     [zoom >= 3] {
-      line-width: 0.4;
+      line-width: 2;
     }
     line-color: @admin-boundaries;
   }
