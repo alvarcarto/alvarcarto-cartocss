@@ -42,3 +42,7 @@ npm run watch
 
 On each push to master, these mapnik styles are deployed to `alvar-map-qa` server.
 
+## Debugging maps
+
+To see exact names of data layers, use OpenStreeMap Editor: https://www.openstreetmap.org/edit. You need to login first.
+
