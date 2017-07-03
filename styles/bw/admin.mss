@@ -10,10 +10,10 @@ overlapping borders correctly.
   [admin_level = '2'] {
     [zoom >= 4] {
       background/line-join: bevel;
-      background/line-color: white;
+      background/line-color: red;
       background/line-width: 4;
       line-join: bevel;
-      line-color: @admin-boundaries;
+      line-color: red;
       line-width: 4;
     }
     [zoom >= 5] {
@@ -38,13 +38,13 @@ overlapping borders correctly.
   The following code prevents admin boundaries from being rendered on top of
   each other. Comp-op works on the entire attachment, not on the individual
   border. Therefore, this code generates an attachment containing a set of
-  @admin-boundaries/white dashed lines (of which only the top one is visible),
+  red/white dashed lines (of which only the top one is visible),
   and with `comp-op: darken` the white part is ignored, while the
-  @admin-boundaries colored part is rendered (as long as the background is not
-  darker than @admin-boundaries).
+  red colored part is rendered (as long as the background is not
+  darker than red).
   The SQL has `ORDER BY admin_level`, so the boundary with the lowest
   admin_level is rendered on top, and therefore the only visible boundary.
   */
-  opacity: 0.4;
+  opacity: 1;
   comp-op: darken;
 }

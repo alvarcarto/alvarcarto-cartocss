@@ -46,8 +46,8 @@
 
     /* Real motorway, speed limit 120 */
     [feature = 'highway_motorway'] {
-      line-color: #333;
-      line-width: 0.6;
+      line-color: #222;
+      line-width: 1.5;
 
       [zoom >= 10] {
         line-color: #111;
@@ -66,8 +66,8 @@
     e.g. Hämeenlinnantie
     */
     [feature = 'highway_trunk'] {
-      line-color: #555;
-      line-width: 0.5;
+      line-color: #444;
+      line-width: 1;
 
       [zoom >= 10] {
         line-color: #222;
@@ -89,7 +89,7 @@
     /* e.g. Simonkatu, speed limit 30-80 */
     [feature = 'highway_tertiary'] {
       line-color: #444;
-      line-width: 0.3;
+      line-width: 0.6;
 
       [zoom >= 8] {
         line-color: #555;
@@ -187,7 +187,7 @@
     [feature = 'railway_platform'],
     [feature = 'railway_turntable'] {
       line-color: #999;
-      line-width: 0.2;
+      line-width: 0.6;
 
       [zoom >= 10] {
         line-color: #777;
