@@ -158,16 +158,14 @@
     [feature = 'highway_footway'],
     [feature = 'highway_cycleway'],
     [feature = 'highway_track'] {
-      line-color: #fff;
-
-      ::line, ::dash  {
-        line-color: #fff;
-      }
-
       [zoom>=16] {
         line-color: #fff;
         line-width: 0.5;
         line/line-dasharray: 2,2;
+
+        ::line, ::dash  {
+          line-color: #fff;
+        }
       }
     }
 

@@ -162,6 +162,10 @@
         line-color: #fff;
         line-width: 0.5;
         line/line-dasharray: 2,2;
+
+        ::line, ::dash  {
+          line-color: #fff;
+        }
       }
     }
 
