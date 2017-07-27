@@ -131,7 +131,7 @@
       line-dasharray: 4,2;
       line-cap: butt;
       line-join: miter;
-      a/line-color: #f3f7f7;
+      a/line-color: white;
       a/line-width: 1;
       [zoom >= 14] { a/line-width: 2; }
       [zoom >= 15] { a/line-width: 3; }
@@ -173,14 +173,14 @@
         line-dasharray: 4,2;
         a/line-width: 1;
         [waterway = 'stream'] { a/line-width: 2; }
-        a/line-color: #f3f7f7;
+        a/line-color: white;
       }
     }
   }
 
   [waterway = 'derelict_canal'][zoom >= 12] {
     line-width: 1.5;
-    line-color: #b5e4d0;
+    line-color: white;
     line-dasharray: 4,4;
     line-opacity: 0.5;
     line-join: round;
