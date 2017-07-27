@@ -11,26 +11,26 @@ overlapping borders correctly.
     [zoom >= 4] {
       background/line-join: bevel;
       background/line-color: red;
-      background/line-width: 4;
+      background/line-width: 3;
       line-join: bevel;
       line-color: red;
-      line-width: 4;
+      line-width: 3;
     }
     [zoom >= 5] {
-      background/line-width: 5;
-      line-width: 5;
+      background/line-width: 3;
+      line-width: 3;
     }
     [zoom >= 6] {
-      background/line-width: 6;
-      line-width: 6;
+      background/line-width: 4;
+      line-width: 4;
     }
     [zoom >= 7] {
-      background/line-width: 7;
-      line-width: 7;
+      background/line-width: 4;
+      line-width: 4;
     }
     [zoom >= 10] {
-      background/line-width: 10;
-      line-width: 10;
+      background/line-width: 6;
+      line-width: 6;
     }
   }
 
