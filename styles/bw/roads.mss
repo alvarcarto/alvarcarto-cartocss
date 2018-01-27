@@ -1,6 +1,6 @@
-.roads-fill[zoom >= 5],
-.bridges-fill[zoom >= 5],
-.tunnels-fill[zoom >= 5] {
+.roads-fill[zoom >= 2],
+.bridges-fill[zoom >= 2],
+.tunnels-fill[zoom >= 2] {
   ::fill {
     /*
     All features for reference:
