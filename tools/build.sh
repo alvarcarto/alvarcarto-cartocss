@@ -13,3 +13,7 @@ carto styles/gray/project.mml > dist/gray.xml
 carto styles/iceberg/project.mml > dist/iceberg.xml
 carto styles/madang/project.mml > dist/madang.xml
 carto styles/petrol/project.mml > dist/petrol.xml
+carto styles/bg-black/project.mml > dist/bg-black.xml
+carto styles/bg-gray/project.mml > dist/bg-gray.xml
+carto styles/bg-sunset/project.mml > dist/bg-sunset.xml
+carto styles/bg-darkgray/project.mml > dist/bg-darkgray.xml
