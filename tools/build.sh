@@ -20,3 +20,5 @@ carto styles/bg-black/project.mml > dist/bg-black.xml
 carto styles/bg-gray/project.mml > dist/bg-gray.xml
 carto styles/bg-sunset/project.mml > dist/bg-sunset.xml
 carto styles/bg-darkgray/project.mml > dist/bg-darkgray.xml
+
+carto styles/acoustic-bw/project.mml > dist/acoustic-bw.xml
