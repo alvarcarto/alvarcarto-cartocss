@@ -15,6 +15,8 @@ carto styles/madang/project.mml > dist/madang.xml
 carto styles/petrol/project.mml > dist/petrol.xml
 carto styles/sunset/project.mml > dist/sunset.xml
 carto styles/contrast-black/project.mml > dist/contrast-black.xml
+carto styles/contrast-black-4x-roads/project.mml > dist/contrast-black-4x-roads.xml
+carto styles/contrast-black-2x-roads/project.mml > dist/contrast-black-2x-roads.xml
 
 carto styles/bg-black/project.mml > dist/bg-black.xml
 carto styles/bg-gray/project.mml > dist/bg-gray.xml
