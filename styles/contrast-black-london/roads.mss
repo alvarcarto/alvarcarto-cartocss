@@ -95,6 +95,7 @@
 .roads-fill[zoom > 0],
 .tunnels-fill[zoom > 0] {
   ::fill {
+    line-width: 1;
     line-color: #000;
   }
 }
