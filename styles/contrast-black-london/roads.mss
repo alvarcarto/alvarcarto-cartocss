@@ -1,19 +1,3 @@
-.bridges-fill {
-  ::fill {
-    line-color: #fff;
-  }
-  ::casing {
-    line-color: #000;
-  }
-}
-
-.roads-fill,
-.tunnels-fill {
-  ::fill {
-    line-color: #000;
-  }
-}
-
 .roads-fill,
 .tunnels-fill,
 .bridges-fill {
@@ -62,8 +46,25 @@
   }
 }
 
+.bridges-fill {
+  ::fill {
+    line-color: #fff;
+  }
+  ::casing {
+    line-color: #000;
+  }
+}
+
+.roads-fill,
+.tunnels-fill {
+  ::fill {
+    line-color: #000;
+  }
+}
+
 #junctions {
   [highway = 'motorway_junction'] {
     line-color: #fff;
   }
 }
+
