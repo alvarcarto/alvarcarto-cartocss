@@ -122,7 +122,7 @@
     /* Real motorway, speed limit 120 */
     [feature = 'highway_motorway'] {
       line-color: #000;
-      line-width: 0.6;
+      line-width: 1;
 
       [zoom >= 10] {
         line-color: #000;
@@ -163,9 +163,6 @@
     [feature = 'highway_secondary'],
     /* e.g. Simonkatu, speed limit 30-80 */
     [feature = 'highway_tertiary'] {
-      line-color: #000;
-      line-width: 0.5;
-
       [zoom >= 8] {
         line-color: #000;
         line-width: 0.5;
