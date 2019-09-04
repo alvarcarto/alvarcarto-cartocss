@@ -64,7 +64,7 @@
 
 
   /* e.g. Mannerheimintie, speed limit 40-80 */
-  [feature = 'highway_primary']
+  [feature = 'highway_primary'] {
     line-width: 0.6; line-color: #000;
 
     [zoom >= 8] { line-width: 1.0; line-color: #000; }
