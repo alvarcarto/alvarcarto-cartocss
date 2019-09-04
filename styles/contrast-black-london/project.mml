@@ -44,7 +44,6 @@ Stylesheet:
   - shapefiles.mss
   - water.mss
   - roads.mss
-  - buildings.mss
 Layer:
   - id: world
     name: world
