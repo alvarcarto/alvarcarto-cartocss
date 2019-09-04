@@ -1,4 +1,5 @@
-.roads-fill {
+.roads-fill,
+.tunnels-fill {
   /* Real motorway, speed limit 120 */
   [feature = 'highway_motorway'] {
     line-width: 0.6; line-color: #fff;
@@ -20,24 +21,6 @@
     [zoom >= 12] { line-width: 3.6; line-color: #fff; }
     [zoom >= 14] { line-width: 5.6; line-color: #fff; }
     [zoom >= 16] { line-width: 7; line-color: #fff; }
-  }
-
-
-  /* e.g. Mannerheimintie, speed limit 40-80 */
-  [feature = 'highway_primary'],
-  /* e.g. Kaivokatu, speed limit 40-80 */
-  [feature = 'highway_secondary'],
-  /* e.g. Simonkatu, speed limit 30-80 */
-  [feature = 'highway_tertiary'] {
-    line-width: 0.6; line-color: #fff;
-
-    [zoom >= 8] { line-width: 1.0; line-color: #fff; }
-    [zoom >= 10] { line-width: 1.6; line-color: #fff; }
-    [zoom >= 11] { line-width: 2.4; line-color: #fff; }
-    [zoom >= 12] { line-width: 3.2; line-color: #fff; }
-    [zoom >= 14] { line-width: 3.6; line-color: #fff; }
-    [zoom >= 15] { line-width: 4; line-color: #fff; }
-    [zoom >= 16] { line-width: 6; line-color: #fff; }
   }
 }
 
@@ -63,23 +46,5 @@
     [zoom >= 12] { line-width: 3.6; line-color: #000; }
     [zoom >= 14] { line-width: 5.6; line-color: #000; }
     [zoom >= 16] { line-width: 7; line-color: #000; }
-  }
-
-
-  /* e.g. Mannerheimintie, speed limit 40-80 */
-  [feature = 'highway_primary'],
-  /* e.g. Kaivokatu, speed limit 40-80 */
-  [feature = 'highway_secondary'],
-  /* e.g. Simonkatu, speed limit 30-80 */
-  [feature = 'highway_tertiary'] {
-    line-width: 0.6; line-color: #000;
-
-    [zoom >= 8] { line-width: 1.0; line-color: #000; }
-    [zoom >= 10] { line-width: 1.6; line-color: #000; }
-    [zoom >= 11] { line-width: 2.4; line-color: #000; }
-    [zoom >= 12] { line-width: 3.2; line-color: #000; }
-    [zoom >= 14] { line-width: 3.6; line-color: #000; }
-    [zoom >= 15] { line-width: 4; line-color: #000; }
-    [zoom >= 16] { line-width: 6; line-color: #000; }
   }
 }
