@@ -1,5 +1,4 @@
-.roads-fill,
-.tunnels-fill {
+.roads-fill {
   /* Real motorway, speed limit 120 */
   [feature = 'highway_motorway'] {
     line-width: 0.6; line-color: #fff;
