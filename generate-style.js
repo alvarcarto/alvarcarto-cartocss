@@ -31,7 +31,7 @@ const ROADS = [
     styles: (zoom) => {
       return {
         'line-width': scale(zoom, 0.2, 7),
-        'line-color': '#444',
+        'line-color': '#fff',
       };
     },
   },
@@ -44,7 +44,7 @@ const ROADS = [
     styles: (zoom) => {
       return {
         'line-width': scale(zoom, 0.15, 6),
-        'line-color': '#444',
+        'line-color': '#fff',
       };
     },
   },
@@ -60,7 +60,7 @@ const ROADS = [
     styles: (zoom) => {
       return {
         'line-width': scale(zoom, 0.1, 4),
-        'line-color': '#444',
+        'line-color': '#fff',
       };
     },
   },
@@ -82,7 +82,7 @@ const ROADS = [
 
       return {
         'line-width': scale(zoom, 0.1, 4),
-        'line-color': '#444',
+        'line-color': '#fff',
       };
     },
   },
@@ -107,7 +107,7 @@ const ROADS = [
 
       return {
         'line-width': scale(zoom, 0, 0.5),
-        'line-color': '#777',
+        'line-color': '#fff',
       };
     },
   }
