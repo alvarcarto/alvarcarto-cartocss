@@ -174,40 +174,40 @@
     [feature = 'highway_living_street'],
     [feature = 'highway_road'] {
       [zoom >= 5] {
-        line-width: 1.63;
+        line-width: 4.76;
         line-color: #fff;
       } [zoom >= 6] {
-        line-width: 1.94;
+        line-width: 5.69;
         line-color: #fff;
       } [zoom >= 7] {
-        line-width: 2.24;
+        line-width: 6.62;
         line-color: #fff;
       } [zoom >= 8] {
-        line-width: 2.55;
+        line-width: 7.55;
         line-color: #fff;
       } [zoom >= 9] {
-        line-width: 2.86;
+        line-width: 8.48;
         line-color: #fff;
       } [zoom >= 10] {
-        line-width: 3.16;
+        line-width: 9.41;
         line-color: #fff;
       } [zoom >= 11] {
-        line-width: 3.47;
+        line-width: 10.34;
         line-color: #fff;
       } [zoom >= 12] {
-        line-width: 3.78;
+        line-width: 11.28;
         line-color: #fff;
       } [zoom >= 13] {
-        line-width: 4.08;
+        line-width: 12.21;
         line-color: #fff;
       } [zoom >= 14] {
-        line-width: 4.39;
+        line-width: 13.14;
         line-color: #fff;
       } [zoom >= 15] {
-        line-width: 4.69;
+        line-width: 14.07;
         line-color: #fff;
       } [zoom >= 16] {
-        line-width: 5;
+        line-width: 15;
         line-color: #fff;
       }
     }
@@ -404,40 +404,40 @@
     [feature = 'highway_living_street'],
     [feature = 'highway_road'] {
       [zoom >= 5] {
-        line-width: 1.63;
+        line-width: 4.76;
         line-color: #fff;
       } [zoom >= 6] {
-        line-width: 1.94;
+        line-width: 5.69;
         line-color: #fff;
       } [zoom >= 7] {
-        line-width: 2.24;
+        line-width: 6.62;
         line-color: #fff;
       } [zoom >= 8] {
-        line-width: 2.55;
+        line-width: 7.55;
         line-color: #fff;
       } [zoom >= 9] {
-        line-width: 2.86;
+        line-width: 8.48;
         line-color: #fff;
       } [zoom >= 10] {
-        line-width: 3.16;
+        line-width: 9.41;
         line-color: #fff;
       } [zoom >= 11] {
-        line-width: 3.47;
+        line-width: 10.34;
         line-color: #fff;
       } [zoom >= 12] {
-        line-width: 3.78;
+        line-width: 11.28;
         line-color: #fff;
       } [zoom >= 13] {
-        line-width: 4.08;
+        line-width: 12.21;
         line-color: #fff;
       } [zoom >= 14] {
-        line-width: 4.39;
+        line-width: 13.14;
         line-color: #fff;
       } [zoom >= 15] {
-        line-width: 4.69;
+        line-width: 14.07;
         line-color: #fff;
       } [zoom >= 16] {
-        line-width: 5;
+        line-width: 15;
         line-color: #fff;
       }
     }
