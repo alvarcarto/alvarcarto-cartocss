@@ -59,7 +59,7 @@ const ROADS = [
     ],
     styles: (zoom) => {
       return {
-        'line-width': scale(zoom, 0.1, 6),
+        'line-width': scale(zoom, 0.1, 20),
         'line-color': '#fff',
       };
     },
@@ -81,7 +81,7 @@ const ROADS = [
       }
 
       return {
-        'line-width': scale(zoom, 0.1, 15),
+        'line-width': scale(zoom, 0.1, 5),
         'line-color': '#fff',
       };
     },
