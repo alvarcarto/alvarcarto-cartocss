@@ -63,52 +63,52 @@
         line-width: 0.15;
         line-color: #fff;
       } [zoom >= 1] {
-        line-width: 0.52;
+        line-width: 0.55;
         line-color: #fff;
       } [zoom >= 2] {
-        line-width: 0.88;
+        line-width: 0.94;
         line-color: #fff;
       } [zoom >= 3] {
-        line-width: 1.25;
+        line-width: 1.34;
         line-color: #fff;
       } [zoom >= 4] {
-        line-width: 1.61;
+        line-width: 1.74;
         line-color: #fff;
       } [zoom >= 5] {
-        line-width: 1.98;
+        line-width: 2.13;
         line-color: #fff;
       } [zoom >= 6] {
-        line-width: 2.34;
+        line-width: 2.53;
         line-color: #fff;
       } [zoom >= 7] {
-        line-width: 2.71;
+        line-width: 2.93;
         line-color: #fff;
       } [zoom >= 8] {
-        line-width: 3.07;
+        line-width: 3.32;
         line-color: #fff;
       } [zoom >= 9] {
-        line-width: 3.44;
+        line-width: 3.72;
         line-color: #fff;
       } [zoom >= 10] {
-        line-width: 3.81;
+        line-width: 4.12;
         line-color: #fff;
       } [zoom >= 11] {
-        line-width: 4.17;
+        line-width: 4.52;
         line-color: #fff;
       } [zoom >= 12] {
-        line-width: 4.54;
+        line-width: 4.91;
         line-color: #fff;
       } [zoom >= 13] {
-        line-width: 4.9;
+        line-width: 5.31;
         line-color: #fff;
       } [zoom >= 14] {
-        line-width: 5.27;
+        line-width: 5.71;
         line-color: #fff;
       } [zoom >= 15] {
-        line-width: 5.63;
+        line-width: 6.1;
         line-color: #fff;
       } [zoom >= 16] {
-        line-width: 6;
+        line-width: 6.5;
         line-color: #fff;
       }
     }
@@ -120,52 +120,52 @@
         line-width: 0.1;
         line-color: #fff;
       } [zoom >= 1] {
-        line-width: 0.34;
+        line-width: 0.47;
         line-color: #fff;
       } [zoom >= 2] {
-        line-width: 0.59;
+        line-width: 0.84;
         line-color: #fff;
       } [zoom >= 3] {
-        line-width: 0.83;
+        line-width: 1.21;
         line-color: #fff;
       } [zoom >= 4] {
-        line-width: 1.07;
+        line-width: 1.58;
         line-color: #fff;
       } [zoom >= 5] {
-        line-width: 1.32;
+        line-width: 1.94;
         line-color: #fff;
       } [zoom >= 6] {
-        line-width: 1.56;
+        line-width: 2.31;
         line-color: #fff;
       } [zoom >= 7] {
-        line-width: 1.81;
+        line-width: 2.68;
         line-color: #fff;
       } [zoom >= 8] {
-        line-width: 2.05;
+        line-width: 3.05;
         line-color: #fff;
       } [zoom >= 9] {
-        line-width: 2.29;
+        line-width: 3.42;
         line-color: #fff;
       } [zoom >= 10] {
-        line-width: 2.54;
+        line-width: 3.79;
         line-color: #fff;
       } [zoom >= 11] {
-        line-width: 2.78;
+        line-width: 4.16;
         line-color: #fff;
       } [zoom >= 12] {
-        line-width: 3.02;
+        line-width: 4.53;
         line-color: #fff;
       } [zoom >= 13] {
-        line-width: 3.27;
+        line-width: 4.89;
         line-color: #fff;
       } [zoom >= 14] {
-        line-width: 3.51;
+        line-width: 5.26;
         line-color: #fff;
       } [zoom >= 15] {
-        line-width: 3.76;
+        line-width: 5.63;
         line-color: #fff;
       } [zoom >= 16] {
-        line-width: 4;
+        line-width: 6;
         line-color: #fff;
       }
     }
@@ -293,52 +293,52 @@
         line-width: 0.15;
         line-color: #fff;
       } [zoom >= 1] {
-        line-width: 0.52;
+        line-width: 0.55;
         line-color: #fff;
       } [zoom >= 2] {
-        line-width: 0.88;
+        line-width: 0.94;
         line-color: #fff;
       } [zoom >= 3] {
-        line-width: 1.25;
+        line-width: 1.34;
         line-color: #fff;
       } [zoom >= 4] {
-        line-width: 1.61;
+        line-width: 1.74;
         line-color: #fff;
       } [zoom >= 5] {
-        line-width: 1.98;
+        line-width: 2.13;
         line-color: #fff;
       } [zoom >= 6] {
-        line-width: 2.34;
+        line-width: 2.53;
         line-color: #fff;
       } [zoom >= 7] {
-        line-width: 2.71;
+        line-width: 2.93;
         line-color: #fff;
       } [zoom >= 8] {
-        line-width: 3.07;
+        line-width: 3.32;
         line-color: #fff;
       } [zoom >= 9] {
-        line-width: 3.44;
+        line-width: 3.72;
         line-color: #fff;
       } [zoom >= 10] {
-        line-width: 3.81;
+        line-width: 4.12;
         line-color: #fff;
       } [zoom >= 11] {
-        line-width: 4.17;
+        line-width: 4.52;
         line-color: #fff;
       } [zoom >= 12] {
-        line-width: 4.54;
+        line-width: 4.91;
         line-color: #fff;
       } [zoom >= 13] {
-        line-width: 4.9;
+        line-width: 5.31;
         line-color: #fff;
       } [zoom >= 14] {
-        line-width: 5.27;
+        line-width: 5.71;
         line-color: #fff;
       } [zoom >= 15] {
-        line-width: 5.63;
+        line-width: 6.1;
         line-color: #fff;
       } [zoom >= 16] {
-        line-width: 6;
+        line-width: 6.5;
         line-color: #fff;
       }
     }
@@ -350,52 +350,52 @@
         line-width: 0.1;
         line-color: #fff;
       } [zoom >= 1] {
-        line-width: 0.34;
+        line-width: 0.47;
         line-color: #fff;
       } [zoom >= 2] {
-        line-width: 0.59;
+        line-width: 0.84;
         line-color: #fff;
       } [zoom >= 3] {
-        line-width: 0.83;
+        line-width: 1.21;
         line-color: #fff;
       } [zoom >= 4] {
-        line-width: 1.07;
+        line-width: 1.58;
         line-color: #fff;
       } [zoom >= 5] {
-        line-width: 1.32;
+        line-width: 1.94;
         line-color: #fff;
       } [zoom >= 6] {
-        line-width: 1.56;
+        line-width: 2.31;
         line-color: #fff;
       } [zoom >= 7] {
-        line-width: 1.81;
+        line-width: 2.68;
         line-color: #fff;
       } [zoom >= 8] {
-        line-width: 2.05;
+        line-width: 3.05;
         line-color: #fff;
       } [zoom >= 9] {
-        line-width: 2.29;
+        line-width: 3.42;
         line-color: #fff;
       } [zoom >= 10] {
-        line-width: 2.54;
+        line-width: 3.79;
         line-color: #fff;
       } [zoom >= 11] {
-        line-width: 2.78;
+        line-width: 4.16;
         line-color: #fff;
       } [zoom >= 12] {
-        line-width: 3.02;
+        line-width: 4.53;
         line-color: #fff;
       } [zoom >= 13] {
-        line-width: 3.27;
+        line-width: 4.89;
         line-color: #fff;
       } [zoom >= 14] {
-        line-width: 3.51;
+        line-width: 5.26;
         line-color: #fff;
       } [zoom >= 15] {
-        line-width: 3.76;
+        line-width: 5.63;
         line-color: #fff;
       } [zoom >= 16] {
-        line-width: 4;
+        line-width: 6;
         line-color: #fff;
       }
     }
