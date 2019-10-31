@@ -1,3 +1,4 @@
+const path = require('path');
 const _ = require('lodash');
 const stripIndent = require('strip-indent');
 const { indent } = require('./utils');
