@@ -57,7 +57,7 @@ const ROADS = [
       }
 
       return {
-        'line-width': scale(zoom, 0.1, 5),
+        'line-width': scale(zoom, 0.1, 4.5),
         'line-color': '#fff',
       };
     },
