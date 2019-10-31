@@ -26,6 +26,8 @@ carto styles/ideation/project.mml > dist/ideation.xml
 carto styles/black-plywood/project.mml > dist/black-plywood.xml
 carto styles/black-plywood-transparent/project.mml > dist/black-plywood-transparent.xml
 
+node styles/js/generate.js styles/nightsky/roads.js > styles/nightsky/roads.mss
+carto styles/nightsky/project.mml > dist/nightsky.xml
 
 carto styles/bg-black/project.mml > dist/bg-black.xml
 carto styles/bg-gray/project.mml > dist/bg-gray.xml
