@@ -62,7 +62,7 @@ function render(roads) {
   console.log(styles)
 }
 
-const filePath = path.join(process.cwd(), process.argv[1])
+const filePath = path.join(process.cwd(), process.argv[2])
 const roads = require(filePath)
 
 render(roads);
