@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 const MIN_ZOOM = 0;
 const MAX_ZOOM = 16;
 
