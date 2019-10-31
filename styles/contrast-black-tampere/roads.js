@@ -1,4 +1,4 @@
-const { scale } = require('../js/util');
+const { scale } = require('../js/utils');
 
 const ROADS = [
   {
