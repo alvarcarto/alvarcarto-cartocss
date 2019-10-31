@@ -19,7 +19,7 @@ const ROADS = [
     features: ['highway_trunk'],
     styles: (zoom) => {
       return {
-        'line-width': scale(zoom, 0.15, 6.5),
+        'line-width': scale(zoom, 0.15, 6),
         'line-color': '#fff',
       };
     },
@@ -35,7 +35,7 @@ const ROADS = [
     ],
     styles: (zoom) => {
       return {
-        'line-width': scale(zoom, 0.1, 5),
+        'line-width': scale(zoom, 0.1, 5.5),
         'line-color': '#fff',
       };
     },
@@ -57,7 +57,7 @@ const ROADS = [
       }
 
       return {
-        'line-width': scale(zoom, 0.1, 4.5),
+        'line-width': scale(zoom, 0.1, 5),
         'line-color': '#fff',
       };
     },
