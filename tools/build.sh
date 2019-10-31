@@ -19,10 +19,13 @@ carto styles/contrast-black/project.mml > dist/contrast-black.xml
 carto styles/contrast-black-4x-roads/project.mml > dist/contrast-black-4x-roads.xml
 carto styles/contrast-black-2x-roads/project.mml > dist/contrast-black-2x-roads.xml
 carto styles/contrast-black-london/project.mml > dist/contrast-black-london.xml
+
+node styles/js/generate.js styles/contrast-black-tampere/roads.js > styles/contrast-black-tampere/roads.mss
 carto styles/contrast-black-tampere/project.mml > dist/contrast-black-tampere.xml
 carto styles/ideation/project.mml > dist/ideation.xml
 carto styles/black-plywood/project.mml > dist/black-plywood.xml
 carto styles/black-plywood-transparent/project.mml > dist/black-plywood-transparent.xml
+
 
 carto styles/bg-black/project.mml > dist/bg-black.xml
 carto styles/bg-gray/project.mml > dist/bg-gray.xml
