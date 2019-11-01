@@ -11,7 +11,7 @@ function scale(zoomLevel, min, max) {
   return Number(scaleBetween(zoomLevel, min, max, MIN_ZOOM, MAX_ZOOM).toFixed(2));
 }
 
-function indent(str, level) {
+function indentExceptFirst(str, level) {
   const lines = str.split('\n')
   const firstLine = _.head(lines)
   const tail = _.tail(lines)
@@ -23,10 +23,17 @@ function indent(str, level) {
   return `${firstLine}\n${indentStr}${tail.join(`\n${indentStr}`)}`;
 }
 
+function indent(str, level) {
+  const lines = str.split('\n')
+  const indentStr = _.repeat('  ', level);
+  return _.map(lines, l => `${indentStr}${l}`).join('\n')
+}
+
 module.exports = {
   scaleBetween,
   scale,
   indent,
+  indentExceptFirst,
   MIN_ZOOM,
   MAX_ZOOM,
 };

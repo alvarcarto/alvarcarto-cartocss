@@ -1,7 +1,7 @@
 const path = require('path');
 const _ = require('lodash');
 const stripIndent = require('strip-indent');
-const { indent } = require('./utils');
+const { indent, indentExceptFirst } = require('./utils');
 
 function createStyleForZoomLevel(group, level) {
   const levelStyles = group.styles(level);
@@ -12,7 +12,7 @@ function createStyleForZoomLevel(group, level) {
   const stylesArr = _.map(levelStyles, (val, key) => `${key}: ${val};`)
   return stripIndent(`
     [zoom >= ${level}] {
-      ${indent(stylesArr.join('\n'), 3)}
+      ${indentExceptFirst(stylesArr.join('\n'), 3)}
     }
   `).trim()
 }
@@ -30,8 +30,8 @@ function renderStyle(style) {
   const featureStyles = _.map(style.featureStyles, (group) => {
     const features = _.map(group.features, name => `[feature = '${name}']`).join(',\n').trim()
     const a = stripIndent(`
-      ${indent(features, 3)} {
-        ${indent(createZoomLevelsForGroup(group), 4)}
+      ${indentExceptFirst(features, 3)} {
+        ${indentExceptFirst(createZoomLevelsForGroup(group), 4)}
       }
     `)
     return a
@@ -46,7 +46,7 @@ function renderStyle(style) {
     return indent(featureStyles, indentLevel);
   });
 
-  console.log(lines.join('\n'))
+  console.log(stripIndent(lines.join('\n')))
 }
 
 function render(styles) {
