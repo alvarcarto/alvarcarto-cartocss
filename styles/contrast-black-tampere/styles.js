@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const { scaleBetween, MAX_ZOOM } = require('../js/utils');
 
 function createRoads(lineColor) {
