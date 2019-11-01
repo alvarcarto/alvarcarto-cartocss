@@ -36,6 +36,10 @@ const ROADS = [
       'highway_tertiary',
     ],
     styles: (zoom) => {
+      if (zoom < 8) {
+        return null
+      }
+
       return {
         'line-width': scaleBetween(zoom, 0.1, 5.5, MIN_ROADS, MAX_ZOOM),
         'line-color': '#fff',
@@ -54,7 +58,7 @@ const ROADS = [
       'highway_road',
     ],
     styles: (zoom) => {
-      if (zoom < 5) {
+      if (zoom < 8) {
         return null
       }
 
@@ -84,7 +88,7 @@ const ROADS = [
       }
 
       return {
-        'line-width': scaleBetween(zoom, 4, 5, 15, 17),
+        'line-width': scaleBetween(zoom, 3, 4, 15, 17),
         'line-color': '#fff',
       };
     },

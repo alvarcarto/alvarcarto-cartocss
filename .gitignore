@@ -6,6 +6,7 @@ data/
 node_modules/
 localconfig.json
 localconfig.js
+images
 
 # Generated at runtime by Python.
 *.pyc
