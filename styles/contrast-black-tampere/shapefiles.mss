@@ -53,15 +53,19 @@
 */
 
 #necountries {
-  [zoom >= 1][zoom < 8] {
-    line-width: 10;
+  [zoom >= 1] {
+    line-width: 5;
     line-color: @admin-boundaries;
   }
 }
 
+/* Uncomment to draw country areas, like Lappi */
+
+/*
 #admin-low-zoom {
   [zoom >= 1] {
-    line-width: 10;
+    line-width: 5;
     line-color: @admin-boundaries;
   }
 }
+*/
