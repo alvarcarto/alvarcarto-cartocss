@@ -75,7 +75,7 @@ function createRoads(lineColor) {
         }
 
         return {
-          'line-width': scale(zoom, 0, 2),
+          'line-width': scale(zoom, 0, 3),
           'line-color': lineColor,
         };
       },
