@@ -136,7 +136,7 @@ const STYLES = [
         }
       }
     `,
-    featureStyles: createRoads('#000')
+    featureStyles: _.take(createRoads('#000'), 3)
   },
 
   {
