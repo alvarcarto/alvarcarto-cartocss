@@ -27,4 +27,6 @@ module.exports = {
   scaleBetween,
   scale,
   indent,
+  MIN_ZOOM,
+  MAX_ZOOM,
 };

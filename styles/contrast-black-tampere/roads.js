@@ -1,4 +1,6 @@
-const { scale } = require('../js/utils');
+const { scaleBetween, MAX_ZOOM } = require('../js/utils');
+
+const MIN_ROADS = 5;
 
 const ROADS = [
   {
@@ -6,7 +8,7 @@ const ROADS = [
     features: ['highway_motorway'],
     styles: (zoom) => {
       return {
-        'line-width': scale(zoom, 0.2, 7),
+        'line-width': scaleBetween(zoom, 0.2, 7, MIN_ROADS, MAX_ZOOM),
         'line-color': '#fff',
       };
     },
@@ -19,7 +21,7 @@ const ROADS = [
     features: ['highway_trunk'],
     styles: (zoom) => {
       return {
-        'line-width': scale(zoom, 0.15, 6),
+        'line-width': scaleBetween(zoom, 0.15, 6, MIN_ROADS, MAX_ZOOM),
         'line-color': '#fff',
       };
     },
@@ -35,7 +37,7 @@ const ROADS = [
     ],
     styles: (zoom) => {
       return {
-        'line-width': scale(zoom, 0.1, 5.5),
+        'line-width': scaleBetween(zoom, 0.1, 5.5, MIN_ROADS, MAX_ZOOM),
         'line-color': '#fff',
       };
     },
@@ -57,7 +59,7 @@ const ROADS = [
       }
 
       return {
-        'line-width': scale(zoom, 0.1, 5),
+        'line-width': scaleBetween(zoom, 0.1, 5, MIN_ROADS, MAX_ZOOM),
         'line-color': '#fff',
       };
     },
@@ -82,7 +84,7 @@ const ROADS = [
       }
 
       return {
-        'line-width': scale(zoom, 0, 0.5),
+        'line-width': scaleBetween(zoom, 4, 5, 15, 17),
         'line-color': '#fff',
       };
     },
