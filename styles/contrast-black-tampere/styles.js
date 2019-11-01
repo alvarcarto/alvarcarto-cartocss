@@ -1,7 +1,5 @@
 const { scaleBetween, MAX_ZOOM } = require('../js/utils');
 
-const MIN_ROADS = 5;
-
 const STYLES = [
   {
     template: `
@@ -30,12 +28,13 @@ const STYLES = [
         /* Real motorway, speed limit 120 */
         features: ['highway_motorway'],
         styles: (zoom) => {
-          if (zoom < 5) {
+          const minZoom = 5;
+          if (zoom < minZoom) {
             return null
           }
 
           return {
-            'line-width': scaleBetween(zoom, 0.2, 7, MIN_ROADS, MAX_ZOOM),
+            'line-width': scaleBetween(zoom, 1, 7, minZoom, MAX_ZOOM),
             'line-color': '#fff',
           };
         },
@@ -47,12 +46,13 @@ const STYLES = [
         */
         features: ['highway_trunk'],
         styles: (zoom) => {
-          if (zoom < 10) {
+          const minZoom = 10;
+          if (zoom < minZoom) {
             return null
           }
 
           return {
-            'line-width': scaleBetween(zoom, 3, 6, 9, MAX_ZOOM),
+            'line-width': scaleBetween(zoom, 4, 6, minZoom, MAX_ZOOM),
             'line-color': '#fff',
           };
         },
@@ -67,12 +67,13 @@ const STYLES = [
           'highway_tertiary',
         ],
         styles: (zoom) => {
-          if (zoom < 12) {
+          const minZoom = 12;
+          if (zoom < minZoom) {
             return null
           }
 
           return {
-            'line-width': scaleBetween(zoom, 0.1, 5.5, MIN_ROADS, MAX_ZOOM),
+            'line-width': scaleBetween(zoom, 3.5, 5.5, minZoom, MAX_ZOOM),
             'line-color': '#fff',
           };
         },
@@ -89,12 +90,13 @@ const STYLES = [
           'highway_road',
         ],
         styles: (zoom) => {
-          if (zoom < 13) {
+          const minZoom = 13;
+          if (zoom < minZoom) {
             return null
           }
 
           return {
-            'line-width': scaleBetween(zoom, 0.1, 5, MIN_ROADS, MAX_ZOOM),
+            'line-width': scaleBetween(zoom, 3, 5, minZoom, MAX_ZOOM),
             'line-color': '#fff',
           };
         },
@@ -114,12 +116,13 @@ const STYLES = [
           'highway_track',
         ],
         styles: (zoom) => {
-          if (zoom < 15) {
+          const minZoom = 15;
+          if (zoom < minZoom) {
             return null
           }
 
           return {
-            'line-width': scaleBetween(zoom, 3, 4, 15, 17),
+            'line-width': scaleBetween(zoom, 3, 4, minZoom, 17),
             'line-color': '#fff',
           };
         },
