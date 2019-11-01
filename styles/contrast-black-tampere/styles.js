@@ -67,7 +67,7 @@ const STYLES = [
           'highway_tertiary',
         ],
         styles: (zoom) => {
-          const minZoom = 12;
+          const minZoom = 11;
           if (zoom < minZoom) {
             return null
           }
@@ -90,7 +90,7 @@ const STYLES = [
           'highway_road',
         ],
         styles: (zoom) => {
-          const minZoom = 13;
+          const minZoom = 11;
           if (zoom < minZoom) {
             return null
           }
