@@ -7,7 +7,7 @@ const ROADS = [
     /* Real motorway, speed limit 120 */
     features: ['highway_motorway'],
     styles: (zoom) => {
-      if (zoom < 8) {
+      if (zoom < 5) {
         return null
       }
 

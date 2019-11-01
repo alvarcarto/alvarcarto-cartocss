@@ -38,3 +38,16 @@
     polygon-fill: #000;
   }
 }
+
+
+/*
+ * Uncomment to enable country boundaries which
+ * can be cut with photoshop
+*/
+
+/*
+#necountries {
+  line-color: #f00;
+  line-width: 8;
+}
+*/
