@@ -24,7 +24,7 @@ carto styles/contrast-black-4x-roads/project.mml > dist/contrast-black-4x-roads.
 carto styles/contrast-black-2x-roads/project.mml > dist/contrast-black-2x-roads.xml
 carto styles/contrast-black-london/project.mml > dist/contrast-black-london.xml
 
-node styles/js/generate.js styles/contrast-black-tampere/roads.js > styles/contrast-black-tampere/roads.mss
+node styles/js/generate.js styles/contrast-black-tampere/styles.js > styles/contrast-black-tampere/generated-styles.mss
 carto styles/contrast-black-tampere/project.mml > dist/contrast-black-tampere.xml
 carto styles/ideation/project.mml > dist/ideation.xml
 carto styles/black-plywood/project.mml > dist/black-plywood.xml

@@ -28,6 +28,10 @@ function createZoomLevelsForGroup(group, indent) {
 
 function renderStyle(style) {
   const featureStyles = _.map(style.featureStyles, (group) => {
+    if (!group.features) {
+      return createZoomLevelsForGroup(group)
+    }
+
     const features = _.map(group.features, name => `[feature = '${name}']`).join(',\n').trim()
     const a = stripIndent(`
       ${indentExceptFirst(features, 3)} {

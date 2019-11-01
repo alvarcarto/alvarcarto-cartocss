@@ -43,7 +43,7 @@ Stylesheet:
   - style.mss
   - shapefiles.mss
   - water.mss
-  - roads.mss
+  - generated-styles.mss
 Layer:
   - id: world
     name: world

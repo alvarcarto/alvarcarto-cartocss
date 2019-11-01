@@ -125,6 +125,30 @@ const STYLES = [
         },
       }
     ]
+  },
+
+  {
+    template: `
+      #admin-countries {
+        {{featureStyles}}
+      }
+    `,
+    featureStyles: [
+      {
+        styles: (zoom) => {
+          if (zoom < 5 || zoom > 10) {
+            return {
+              'line-width': 0,
+            };
+          }
+
+          return {
+            'line-width': scaleBetween(zoom, 0.2, 5, 5, 10),
+            'line-color': '#fff',
+          };
+        },
+      },
+    ]
   }
 ]
 

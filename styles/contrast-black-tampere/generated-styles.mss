@@ -323,3 +323,48 @@
   }
 }
     
+
+#admin-countries {
+  [zoom >= 0] {
+    line-width: 0;
+  } [zoom >= 1] {
+    line-width: 0;
+  } [zoom >= 2] {
+    line-width: 0;
+  } [zoom >= 3] {
+    line-width: 0;
+  } [zoom >= 4] {
+    line-width: 0;
+  } [zoom >= 5] {
+    line-width: 0.2;
+    line-color: #fff;
+  } [zoom >= 6] {
+    line-width: 1.16;
+    line-color: #fff;
+  } [zoom >= 7] {
+    line-width: 2.12;
+    line-color: #fff;
+  } [zoom >= 8] {
+    line-width: 3.08;
+    line-color: #fff;
+  } [zoom >= 9] {
+    line-width: 4.04;
+    line-color: #fff;
+  } [zoom >= 10] {
+    line-width: 5;
+    line-color: #fff;
+  } [zoom >= 11] {
+    line-width: 0;
+  } [zoom >= 12] {
+    line-width: 0;
+  } [zoom >= 13] {
+    line-width: 0;
+  } [zoom >= 14] {
+    line-width: 0;
+  } [zoom >= 15] {
+    line-width: 0;
+  } [zoom >= 16] {
+    line-width: 0;
+  }
+}
+    
