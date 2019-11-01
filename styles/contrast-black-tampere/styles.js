@@ -47,12 +47,12 @@ const STYLES = [
         */
         features: ['highway_trunk'],
         styles: (zoom) => {
-          if (zoom < 8) {
+          if (zoom < 10) {
             return null
           }
 
           return {
-            'line-width': scaleBetween(zoom, 0.15, 6, MIN_ROADS, MAX_ZOOM),
+            'line-width': scaleBetween(zoom, 3, 6, 9, MAX_ZOOM),
             'line-color': '#fff',
           };
         },
@@ -67,7 +67,7 @@ const STYLES = [
           'highway_tertiary',
         ],
         styles: (zoom) => {
-          if (zoom < 8) {
+          if (zoom < 12) {
             return null
           }
 
@@ -89,7 +89,7 @@ const STYLES = [
           'highway_road',
         ],
         styles: (zoom) => {
-          if (zoom < 8) {
+          if (zoom < 13) {
             return null
           }
 
