@@ -7,6 +7,10 @@ const ROADS = [
     /* Real motorway, speed limit 120 */
     features: ['highway_motorway'],
     styles: (zoom) => {
+      if (zoom < 8) {
+        return null
+      }
+
       return {
         'line-width': scaleBetween(zoom, 0.2, 7, MIN_ROADS, MAX_ZOOM),
         'line-color': '#fff',
@@ -20,6 +24,10 @@ const ROADS = [
     */
     features: ['highway_trunk'],
     styles: (zoom) => {
+      if (zoom < 8) {
+        return null
+      }
+
       return {
         'line-width': scaleBetween(zoom, 0.15, 6, MIN_ROADS, MAX_ZOOM),
         'line-color': '#fff',
