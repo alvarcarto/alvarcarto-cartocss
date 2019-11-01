@@ -14,6 +14,10 @@ carto styles/iceberg/project.mml > dist/iceberg.xml
 carto styles/madang/project.mml > dist/madang.xml
 carto styles/petrol/project.mml > dist/petrol.xml
 carto styles/sunset/project.mml > dist/sunset.xml
+<<<<<<< HEAD
+=======
+
+>>>>>>> Add countries style
 carto styles/countries/project.mml > dist/countries.xml
 carto styles/contrast-black/project.mml > dist/contrast-black.xml
 carto styles/contrast-black-4x-roads/project.mml > dist/contrast-black-4x-roads.xml
