@@ -46,7 +46,7 @@ function createRoads(lineColor) {
         'highway_tertiary',
       ],
       styles: (zoom) => {
-        const minZoom = 11;
+        const minZoom = 10;
         if (zoom < minZoom) {
           return null
         }
