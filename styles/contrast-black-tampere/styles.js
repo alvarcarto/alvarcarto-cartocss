@@ -28,7 +28,7 @@ const STYLES = [
         /* Real motorway, speed limit 120 */
         features: ['highway_motorway'],
         styles: (zoom) => {
-          const minZoom = 5;
+          const minZoom = 6;
           if (zoom < minZoom) {
             return null
           }
@@ -146,7 +146,7 @@ const STYLES = [
           }
 
           return {
-            'line-width': scaleBetween(zoom, 0.2, 5, 5, 10),
+            'line-width': scaleBetween(zoom, 0.2, 3, 5, 10),
             'line-color': '#fff',
           };
         },
