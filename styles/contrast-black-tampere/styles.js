@@ -146,7 +146,7 @@ const STYLES = [
           }
 
           return {
-            'line-width': scaleBetween(zoom, 0.2, 3, 5, 10),
+            'line-width': scaleBetween(zoom, 1, 5, 5, 10),
             'line-color': '#fff',
           };
         },
