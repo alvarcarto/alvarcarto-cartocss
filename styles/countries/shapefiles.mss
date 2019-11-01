@@ -51,7 +51,7 @@ To simplify the borders, see https://github.com/gravitystorm/openstreetmap-carto
 
 #admin-countries {
   [zoom >= 1] {
-    line-width: 5;
+    line-width: 3;
     line-color: @admin-boundaries;
   }
 }
