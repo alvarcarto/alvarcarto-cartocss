@@ -13,7 +13,7 @@ function createRoads(lineColor) {
         }
 
         return {
-          'line-width': scaleBetween(zoom, 1, 7, minZoom, MAX_ZOOM),
+          'line-width': scale(zoom, 0, 7),
           'line-color': lineColor,
         };
       },
@@ -31,7 +31,7 @@ function createRoads(lineColor) {
         }
 
         return {
-          'line-width': scaleBetween(zoom, 4, 6.5, minZoom, MAX_ZOOM),
+          'line-width': scale(zoom, 0, 6),
           'line-color': lineColor,
         };
       },
@@ -52,7 +52,7 @@ function createRoads(lineColor) {
         }
 
         return {
-          'line-width': scaleBetween(zoom, 3.5, 5.5, minZoom, MAX_ZOOM),
+          'line-width': scale(zoom, 0, 5),
           'line-color': lineColor,
         };
       },
@@ -75,7 +75,7 @@ function createRoads(lineColor) {
         }
 
         return {
-          'line-width': scaleBetween(zoom, 2, 5, minZoom, MAX_ZOOM),
+          'line-width': scale(zoom, 0, 4),
           'line-color': lineColor,
         };
       },
@@ -101,7 +101,7 @@ function createRoads(lineColor) {
         }
 
         return {
-          'line-width': scaleBetween(zoom, 3, 4, minZoom, 17),
+          'line-width': scale(zoom, 0, 3.5),
           'line-color': lineColor,
         };
       },
