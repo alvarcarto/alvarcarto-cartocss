@@ -54,16 +54,7 @@
 
 #necountries {
   [zoom >= 1][zoom < 8] {
-    line-width: 0.2;
-    [zoom >= 2] {
-      line-width: 0.3;
-    }
-    [zoom >= 3] {
-      line-width: 0.4;
-    }
-    [zoom >= 5] {
-      line-width: 1;
-    }
+    line-width: 10;
     line-color: @admin-boundaries;
   }
 }
