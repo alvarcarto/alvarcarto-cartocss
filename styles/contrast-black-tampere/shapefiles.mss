@@ -38,26 +38,3 @@
     polygon-fill: #000;
   }
 }
-
-
-/*
- * Uncomment to enable country boundaries which
- * can be cut with photoshop
-*/
-
-#admin-countries {
-  [zoom >= 1] {
-    line-width: 5;
-    line-color: @admin-boundaries;
-  }
-}
-
-/* Uncomment to draw country areas, like Lappi */
-/*
-#admin-low-zoom {
-  [zoom >= 1] {
-    line-width: 5;
-    line-color: @admin-boundaries;
-  }
-}
-*/
