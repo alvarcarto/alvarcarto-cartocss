@@ -58,3 +58,10 @@
     line-color: @admin-boundaries;
   }
 }
+
+#admin-medium-zoom {
+  [zoom >= 1] {
+    line-width: 10;
+    line-color: @admin-boundaries;
+  }
+}

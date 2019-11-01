@@ -1254,8 +1254,7 @@ Layer:
           ORDER BY admin_level DESC
         ) AS admin_low_zoom
     properties:
-      minzoom: 4
-      maxzoom: 10
+      minzoom: 1
   - id: admin-mid-zoom
     name: admin-mid-zoom
     geometry: linestring
@@ -1273,8 +1272,7 @@ Layer:
           ORDER BY admin_level DESC
         ) AS admin_mid_zoom
     properties:
-      minzoom: 11
-      maxzoom: 12
+      minzoom: 1
   - id: admin-high-zoom
     name: admin-high-zoom
     geometry: linestring
@@ -1292,7 +1290,7 @@ Layer:
           ORDER BY admin_level::integer DESC -- With 10 as a valid value, we need to do a numeric ordering, not a text ordering
         ) AS admin_high_zoom
     properties:
-      minzoom: 13
+      minzoom: 1
   - id: power-minorline
     name: power-minorline
     geometry: linestring
