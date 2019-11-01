@@ -59,7 +59,7 @@
   }
 }
 
-#admin-medium-zoom {
+#admin-mid-zoom {
   [zoom >= 1] {
     line-width: 10;
     line-color: @admin-boundaries;
