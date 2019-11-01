@@ -26,8 +26,8 @@ function createZoomLevelsForGroup(group, indent) {
   return _.filter(arr, i => !_.isNull(i)).join(' ')
 }
 
-function render(roads) {
-  const fills = _.map(roads, (group) => {
+function renderStyle(style) {
+  const featureStyles = _.map(style.featureStyles, (group) => {
     const features = _.map(group.features, name => `[feature = '${name}']`).join(',\n').trim()
     const a = stripIndent(`
       ${indent(features, 3)} {
@@ -37,32 +37,23 @@ function render(roads) {
     return a
   }).join('').trim()
 
-  const styles = stripIndent(`
-    .roads-fill[zoom >= 0],
-    .bridges-fill[zoom >= 0],
-    .tunnels-fill[zoom >= 0] {
-      ::fill {
-        ${indent(fills, 4)}
-      }
+  const { template } = style;
+  const lines = _.map(template.split('\n'), line => {
+    if (line.indexOf('{{featureStyles}}') === -1) {
+      return line;
     }
+    const indentLevel = (line.length - _.trimStart(line, ' ').length) / 2;
+    return indent(featureStyles, indentLevel);
+  });
 
-    .bridges-fill[zoom >= 0] {
-      ::casing {
-        ${indent(fills, 4)}
-      }
-    }
+  console.log(lines.join('\n'))
+}
 
-    #junctions {
-      [highway = 'motorway_junction'] {
-        line-color: #fff;
-      }
-    }
-  `);
-
-  console.log(styles)
+function render(styles) {
+  _.forEach(styles, s => renderStyle(s));
 }
 
 const filePath = path.join(process.cwd(), process.argv[2])
-const roads = require(filePath)
+const styles = require(filePath)
 
-render(roads);
+render(styles);
