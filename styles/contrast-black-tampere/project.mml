@@ -1237,6 +1237,24 @@ Layer:
         ) AS guideways
     properties:
       minzoom: 13
+  - id: admin-countries
+    name: admin-countries
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+            way,
+            admin_level
+          FROM planet_osm_roads
+          WHERE boundary = 'administrative'
+            AND admin_level IN ('0')
+            AND osm_id < 0
+          ORDER BY admin_level DESC
+        ) AS admin_low_zoom
+    properties:
+      minzoom: 0
   - id: admin-low-zoom
     name: admin-low-zoom
     geometry: linestring

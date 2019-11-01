@@ -45,14 +45,7 @@
  * can be cut with photoshop
 */
 
-/*
-#necountries {
-  line-color: #f00;
-  line-width: 8;
-}
-*/
-
-#necountries {
+#admin-countries {
   [zoom >= 1] {
     line-width: 5;
     line-color: @admin-boundaries;
@@ -60,7 +53,6 @@
 }
 
 /* Uncomment to draw country areas, like Lappi */
-
 /*
 #admin-low-zoom {
   [zoom >= 1] {
