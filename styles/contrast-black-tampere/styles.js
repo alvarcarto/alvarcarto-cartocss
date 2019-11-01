@@ -30,7 +30,7 @@ function createRoads(lineColor) {
         }
 
         return {
-          'line-width': scaleBetween(zoom, 4, 6, minZoom, MAX_ZOOM),
+          'line-width': scaleBetween(zoom, 4, 7, minZoom, MAX_ZOOM),
           'line-color': lineColor,
         };
       },
@@ -51,7 +51,7 @@ function createRoads(lineColor) {
         }
 
         return {
-          'line-width': scaleBetween(zoom, 3.5, 5.5, minZoom, MAX_ZOOM),
+          'line-width': scaleBetween(zoom, 3.5, 6, minZoom, MAX_ZOOM),
           'line-color': lineColor,
         };
       },
@@ -74,7 +74,7 @@ function createRoads(lineColor) {
         }
 
         return {
-          'line-width': scaleBetween(zoom, 2, 5, minZoom, MAX_ZOOM),
+          'line-width': scaleBetween(zoom, 2, 5.5, minZoom, MAX_ZOOM),
           'line-color': lineColor,
         };
       },
@@ -116,6 +116,12 @@ const STYLES = [
       .tunnels-fill[zoom >= 0] {
         ::fill {
           {{featureStyles}}
+        }
+      }
+
+      #junctions {
+        [highway = 'motorway_junction'] {
+          line-color: #fff;
         }
       }
     `,
