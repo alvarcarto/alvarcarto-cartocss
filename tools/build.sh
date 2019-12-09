@@ -19,6 +19,7 @@ carto styles/contrast-black-4x-roads/project.mml > dist/contrast-black-4x-roads.
 carto styles/contrast-black-2x-roads/project.mml > dist/contrast-black-2x-roads.xml
 carto styles/contrast-black-london/project.mml > dist/contrast-black-london.xml
 carto styles/contrast-black-tampere/project.mml > dist/contrast-black-tampere.xml
+carto styles/ideation/project.mml > dist/ideation.xml
 
 carto styles/bg-black/project.mml > dist/bg-black.xml
 carto styles/bg-gray/project.mml > dist/bg-gray.xml
