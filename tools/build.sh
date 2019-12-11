@@ -21,6 +21,7 @@ carto styles/contrast-black-london/project.mml > dist/contrast-black-london.xml
 carto styles/contrast-black-tampere/project.mml > dist/contrast-black-tampere.xml
 carto styles/ideation/project.mml > dist/ideation.xml
 carto styles/black-plywood/project.mml > dist/black-plywood.xml
+carto styles/black-plywood-transparent/project.mml > dist/black-plywood-transparent.xml
 
 carto styles/bg-black/project.mml > dist/bg-black.xml
 carto styles/bg-gray/project.mml > dist/bg-gray.xml
