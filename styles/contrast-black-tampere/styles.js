@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const { scaleBetween, scale } = require('../js/utils');
+const { scaleBetweenRanges, scale } = require('../js/utils');
 
 function createRoads(lineColor) {
   return [
@@ -112,9 +112,9 @@ function createRoads(lineColor) {
 const STYLES = [
   {
     template: `
-      .roads-fill[zoom >= 0],
-      .bridges-fill[zoom >= 0],
-      .tunnels-fill[zoom >= 0] {
+      #roads-fill[zoom >= 0],
+      #bridges[zoom >= 0],
+      #tunnels[zoom >= 0] {
         ::fill {
           {{featureStyles}}
         }
@@ -131,7 +131,7 @@ const STYLES = [
 
   {
     template: `
-      .bridges-fill[zoom >= 0] {
+      #bridges[zoom >= 0] {
         ::casing {
           {{featureStyles}}
         }
@@ -142,7 +142,7 @@ const STYLES = [
 
   {
     template: `
-      #admin-countries {
+      #custom-alvar-countries {
         {{featureStyles}}
       }
     `,
@@ -156,7 +156,8 @@ const STYLES = [
           }
 
           return {
-            'line-width': scaleBetween(zoom, 2.5, 5, 5, 10),
+            // This scaling is done in zoom ranges 5-10, instead of the regular 0-16
+            'line-width': scaleBetweenRanges(zoom, 5, 10, 2.5, 5),
             'line-color': '#fff',
           };
         },

@@ -1,7 +1,7 @@
 
-.roads-fill[zoom >= 0],
-.bridges-fill[zoom >= 0],
-.tunnels-fill[zoom >= 0] {
+#roads-fill[zoom >= 0],
+#bridges[zoom >= 0],
+#tunnels[zoom >= 0] {
   ::fill {
     [feature = 'highway_motorway'] {
       [zoom >= 6] {
@@ -139,7 +139,7 @@
 }
     
 
-.bridges-fill[zoom >= 0] {
+#bridges[zoom >= 0] {
   ::casing {
     [feature = 'highway_motorway'] {
       [zoom >= 6] {
@@ -233,7 +233,7 @@
 }
     
 
-#admin-countries {
+#custom-alvar-countries {
   [zoom >= 0] {
     line-width: 0;
   } [zoom >= 1] {
