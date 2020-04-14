@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+  cartocss:
+    image: alvar-map-node
+    working_dir: /home/alvar/alvarcarto-cartocss
+    volumes:
+      - .:/home/alvar/alvarcarto-cartocss
