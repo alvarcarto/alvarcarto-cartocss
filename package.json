@@ -3,22 +3,27 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "4.1.2"
-  },
   "scripts": {
     "watch": "npm run build && chokidar \"styles/**/*.mss\" \"styles/**/*.mml\" -c \"npm run build\"",
     "build": "./tools/build.sh",
-    "test": "echo \"Styles are not tested. At some point they will be tested through alvarcarto-render-service.\""
+    "test": "echo \"Test with alvarcarto-render-snapshot\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "carto": "^0.16.3",
+    "chroma-js": "^2.1.0",
     "lodash": "^4.15.0",
     "strip-indent": "^3.0.0"
   },
   "devDependencies": {
-    "chokidar-cli": "^1.2.0"
+    "@mapbox/sphericalmercator": "^1.1.0",
+    "bezier-easing": "^2.1.0",
+    "blink-diff": "^1.0.13",
+    "bluebird": "^3.7.2",
+    "carto": "^1.2.0",
+    "chokidar-cli": "^1.2.0",
+    "pretty-bytes": "^5.3.0",
+    "request-promise": "^4.2.5",
+    "sharp": "^0.25.2"
   }
 }
