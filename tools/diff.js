@@ -8,10 +8,11 @@ const sharp = require('sharp');
 const request = require('request-promise');
 const prettyBytes = require('pretty-bytes');
 
-const OLD_MAP_STYLE = 'bw'
-const NEW_MAP_STYLE = 'bw2'
-const WRITE_DIFF = true;
+const OLD_MAP_STYLE = process.argv[2] || 'bw';
+const NEW_MAP_STYLE = process.argv[3] || OLD_MAP_STYLE;
+const WRITE_DIFF = false;
 
+// NOTE: Keep in mind that some really large cities might look bad even if Helsinki looks OK
 const locations = [
   // Helsinki city center
   // http://localhost:3000/?debug=true&lat=60.1697&lng=24.9397&mapStyle=bw&orientation=portrait&labelsEnabled=false&size=50x70cm&updateCoords=true&zoom=16
@@ -94,7 +95,8 @@ async function resizeToHeight(imgBuffer, height) {
 }
 
 async function main() {
-  const zoomLevels = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+  // const zoomLevels = [9, 10, 11, 12, 13, 14, 15, 16];
+  const zoomLevels = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   // const zoomLevels = _.reverse(_.range(1, 18));
 
   await BPromise.each(zoomLevels, async (zoomLevel) => {
@@ -106,7 +108,7 @@ async function main() {
 
       console.log(`Zoom level ${zoomLevel}, location at index ${locIndex} ..`);
 
-      const newImageName = `images/diff/z${zoomLevel}-${locIndex}-new.png`;
+      const newImageName = `images/diff/${OLD_MAP_STYLE}-${NEW_MAP_STYLE}-z${zoomLevel}-${locIndex}-new.png`;
       const newImage = await downloadImage('http://localhost:8001', location, {
         zoom: zoomLevel,
         apiKey: 'secret',
@@ -114,7 +116,7 @@ async function main() {
       });
       await fs.writeFileAsync(getPath(newImageName), newImage, { encoding: null });
 
-      const oldImageName = `images/diff/z${zoomLevel}-${locIndex}-old.png`;
+      const oldImageName = `images/diff/${OLD_MAP_STYLE}-${NEW_MAP_STYLE}-z${zoomLevel}-${locIndex}-old.png`;
       const oldExists = fs.existsSync(getPath(oldImageName));
       if (!oldExists) {
         const oldImage = await downloadImage('http://54.36.173.210:8001', location, {
@@ -129,7 +131,7 @@ async function main() {
       }
 
       if (WRITE_DIFF) {
-        const diffImageName = `images/diff/z${zoomLevel}-${locIndex}-diff.png`;
+        const diffImageName = `images/diff/${OLD_MAP_STYLE}-${NEW_MAP_STYLE}-z${zoomLevel}-${locIndex}-diff.png`;
         const diff = new BlinkDiff({
           imageAPath: getPath(oldImageName),
           imageBPath: getPath(newImageName),
@@ -150,5 +152,6 @@ async function main() {
 main()
   .then(() => console.log('Done.'))
   .catch(err => {
-    throw err
+    console.error(err);
+    process.exit(1);
   });

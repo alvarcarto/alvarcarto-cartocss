@@ -5,9 +5,7 @@
 @building-major-fill: darken(@building-fill, 5%);
 @building-major-line: darken(@building-major-fill, 25%);
 
-@building-aeroway-fill: #fff;
 @building-aeroway-line: darken(@building-aeroway-fill, 8%);
-
 
 #buildings {
   [zoom >= 16] {
@@ -35,7 +33,7 @@
 }
 
 #bridge {
-  [zoom >= 15] {
-    polygon-fill: #B8B8B8;
+  [zoom >= 10] {
+    polygon-fill: @bridge-color;
   }
 }

@@ -1,0 +1,4 @@
+Stylesheet:
+  - variables.mss
+  - ../base/shapefiles.mss
+  - custom.mss

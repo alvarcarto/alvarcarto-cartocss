@@ -1,0 +1,6 @@
+Stylesheet:
+  - variables.mss
+  - ../base/shapefiles.mss
+  - ../base/water.mss
+  - ../base/buildings.mss
+  - generated-styles.mss

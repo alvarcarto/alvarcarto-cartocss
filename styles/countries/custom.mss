@@ -2,7 +2,7 @@
 To simplify the borders, see https://github.com/gravitystorm/openstreetmap-carto/blob/ea73a44105ad1c3a0ebff817d4a8e9ea9233124b/admin.mss
 */
 
-#alvar-custom-countries {
+#custom-alvar-countries {
   [zoom >= 1] {
     line-width: 3;
     line-color: @admin-boundaries;

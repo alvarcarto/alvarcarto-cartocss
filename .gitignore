@@ -8,6 +8,9 @@ localconfig.json
 localconfig.js
 images
 
+generated-styles.mss
+generated-project.mml
+
 # Generated at runtime by Python.
 *.pyc
 **/*.pyc

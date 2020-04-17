@@ -22,6 +22,45 @@ is thousands of pixels, we're applying a scale multiplier to mapnik rendering.
 * Different postgis connection details
 * Our customized country borders in project.mml (custom-alvar-countries)
 
+### How build process works
+
+The aim is that each style contains only the necessary declarations for that style. All common parts
+are under [styles/base/](styles/base/) directory. The base styles can be configured via variables.
+
+[tools/build.sh](tools/build.sh):
+
+1. Convert template MMLs to full project files
+
+    CartoCSS style's index file is project.mml. This file contains the SQL queries to get
+    roads, buildings, etc. The project file is 99% same for all our styles, except the "Stylesheet"
+    declaration. That's why our individual styles only define `project-sheet.mml` and it will
+    be injected into `styles/base/project-template.mml`.
+
+2. Convert `styles.js` declaration to actual CartoCSS to `generated-styles.mss` file.
+
+    The `styles.js` uses our internal convenience format for generating styles for roads. It can
+    be used for other generation as well.
+
+    The main benefit of using this automation is to be able to generate consistent styles for each
+    zoom level, using line color and thicnkess intepolation with given easing function. It removes
+    the need to fine tune each zoom level color and thickness manually.
+
+3. Compile the CartoCSS project with [https://github.com/mapbox/carto] to Mapnik XML stylesheet.
+
+
+
+### Developing a new style
+
+* First start the docker environment (postgres and render service)
+* `cp -r styles/bw styles/new-style`
+* Check that `project-sheet.mml` contains everything you need. Optionally add e.g. `../base/landcover.mss`.
+* Edit `variables.mss` for land, water, and building colors
+* Edit roads with `styles.js`. Other files already contain examples how to modify or extend the styles.
+* Run `bash tools/build.sh new-style` to build the style
+* Run `node tools/diff.js bw new-style` to render comparison images of different zoom levels
+
+    The script will output images under `images/diff/` directory. It will fetch `new-style` from local
+    docker environment and `bw` style from the current production environment for comparison.
 
 
 ## Usage
