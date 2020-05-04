@@ -69,10 +69,15 @@ const DEFAULT_STYLE = {
     'line-width': { from: 0, to: 4.0 },
     'line-color': { from: '#555', to: '#1a1a1a' }
   },
-  roadLevel3: {
-    'line-width': { from: 0, to: 3.5 },
-    'line-color': { from: '#666', to: '#272727' }
-  },
+  roadLevel3: [
+    {
+      minZ: 6,
+      values: {
+        'line-width': { from: 0, to: 3.5 },
+        'line-color': { from: '#666', to: '#272727' }
+      }
+    }
+  ],
   // Matching order happens from the highest minZ to lowest
   // "The street-level details override the country level ones"
   roadLevel4: [
@@ -84,7 +89,7 @@ const DEFAULT_STYLE = {
       }
     },
     {
-      minZ: 0,
+      minZ: 8,
       values: {
         'line-width': { from: 0, to: 0.9 },
         'line-color': { from: '#ccc', to: '#222' }
