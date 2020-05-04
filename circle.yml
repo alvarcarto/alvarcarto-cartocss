@@ -1,7 +1,0 @@
-
-deployment:
-  production:
-    branch: master
-    commands:
-      - npm install
-      - bash ./tools/deploy.sh
