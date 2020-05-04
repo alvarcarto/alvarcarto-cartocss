@@ -8,13 +8,13 @@ const style = extendDefaultStyle({
     'line-color': { from: '#888', to: '#aaa' }
   },
   roadLevel3: {
-    'line-color': { from: '#777', to: '#aaa' }
+    'line-color': { from: '#777', to: '#aaa' },
   },
   roadLevel4: [{
     minZ: 9,
+    // When array format is used, we need to set all attributes,
+    // these are not merged
     values: {
-      // When array format is used, we need to set all attributes,
-      // these are not merged
       'line-width': { from: 0.3, to: 1.5 },
       'line-color': { from: '#222', to: '#aaa' }
     },
