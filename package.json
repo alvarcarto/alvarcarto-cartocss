@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "watch": "npm run build && chokidar \"styles/**/*.mss\" \"styles/**/*.mml\" -c \"npm run build\"",
+    "bash": "docker-compose run cartocss bash -c 'bash --rcfile <(echo \"source ~/.bashrc; nvm use 10\")'",
     "build": "./tools/build.sh",
     "test": "echo \"Test with alvarcarto-render-snapshot\""
   },
