@@ -30,8 +30,11 @@ const FEATURE_GROUPS = {
   ],
   // Other walking paths
   roadLevel5: [
+    // count: 393 204 rows
     'highway_pedestrian',
+    // count: 24 778 rows
     'highway_raceway',
+
     'highway_platform',
     'highway_steps',
     'highway_bridleway',
@@ -75,14 +78,6 @@ const DEFAULT_STYLE = {
       minZ: 0,
       // Override default features
       // We can't show all level 3 roads at low zoom levels as it generates too heavy SQL queries
-      features: ['highway_primary'],
-      values: {
-        'line-width': { from: 0, to: 3.5 },
-        'line-color': { from: '#666', to: '#272727' }
-      }
-    },
-    {
-      minZ: 8,
       features: ['highway_primary', 'highway_secondary'],
       values: {
         'line-width': { from: 0, to: 3.5 },
@@ -91,7 +86,7 @@ const DEFAULT_STYLE = {
     },
     {
       minZ: 9,
-      features: ['highway_primary', 'highway_secondary', 'highway_tertiary'],
+      features: ['highway_tertiary'],
       values: {
         'line-width': { from: 0, to: 3.5 },
         'line-color': { from: '#666', to: '#272727' }
