@@ -17,49 +17,45 @@ const FEATURE_GROUPS = {
     'highway_tertiary',
   ],
   roadLevel4: [
-    // e.g. Annankatu, speed limit 30-60, count: 50 597 088 rows
+    // e.g. Annankatu, speed limit 30-60
+    // count: 50 597 088 rows
     'highway_residential',
-    // Street in a residental area e.g. Paimentie, speed limit max 30km/h, count: 1 161 247 rows
+    // Street in a residental area e.g. Paimentie, speed limit max 30km/h
+    // count: 1 161 247 rows
     'highway_living_street',
-    // count: 12 722 846 rows
-    'highway_unclassified',
-    // count: 164 102 rows
-    'highway_road',
-    // count: 31 264 766 rows
-    'highway_service',
+    'highway_unclassified',  // count: 12 722 846 rows
+    'highway_road',  // count: 164 102 rows
+    'highway_service',  // count: 31 264 766 rows
   ],
   // Other walking paths
   roadLevel5: [
-    // count: 393 204 rows
-    'highway_pedestrian',
-    // count: 24 778 rows
-    'highway_raceway',
-
-    'highway_platform',
-    'highway_steps',
-    'highway_bridleway',
-    'highway_footway',
-    'highway_cycleway',
-    'highway_track',
+    'highway_pedestrian',  // count: 393 204 rows
+    'highway_raceway',  // count: 24 778 rows
+    'highway_platform',  // count: 70 193 rows
+    'highway_steps',  // count: 991 131 rows
+    'highway_bridleway',  // count: 83 592 rows
+    'highway_footway',  // count: 11 255 651 rows
+    'highway_cycleway',  // count: 1 048 213 rows
+    'highway_track',  // count: 18 033 944 rows
   ],
   railway: [
-    'railway_rail',
-    'railway_INT-spur-siding-yard',
-    'railway_light_rail',
-    'railway_funicular',
-    'railway_narrow_gauge',
-    'railway_miniature',
-    'railway_preserved',
-    'railway_INT-preserved-ssy',
-    'railway_monorail',
-    'railway_construction',
-    'railway_disused',
-    'railway_platform',
-    'railway_turntable',
+    'railway_rail',  // count: 724 638 rows
+    'railway_INT-spur-siding-yard',  // count: 886862 rows
+    'railway_light_rail',  // count:  rows
+    'railway_funicular',  // count:  rows
+    'railway_narrow_gauge',  // count:  rows
+    'railway_miniature',  // count:  rows
+    'railway_preserved',  // count:  rows
+    'railway_INT-preserved-ssy',  // count:  rows
+    'railway_monorail',  // count:  rows
+    'railway_construction',  // count:  rows
+    'railway_disused',  // count:  rows
+    'railway_platform',  // count:  rows
+    'railway_turntable',  // count:  rows
   ],
   aeroway: [
-    'aeroway_runway',
-    'aeroway_taxiway',
+    'aeroway_runway',  // count:  rows
+    'aeroway_taxiway',  // count:  rows
   ]
 }
 
@@ -225,7 +221,7 @@ function createStyles(opts) {
     template: `
       #roads-fill[zoom >= 0],
       #bridges[zoom >= 0],
-      #tunnels[zoom >= 0] {
+      #tunnels[zoom >= 9] {
         ::fill {
           {{featureStyles}}
         }
