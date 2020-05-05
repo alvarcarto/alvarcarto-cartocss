@@ -21,6 +21,8 @@ is thousands of pixels, we're applying a scale multiplier to mapnik rendering.
 * Roads, tunnels and bridges are shown already at zoom level 5 for artistic reasons
 * Different postgis connection details
 * Our customized country borders in project.mml (custom-alvar-countries)
+* Optimized roads and tunnels SQL queries, we basically removed [ORDER BY](https://github.com/gravitystorm/openstreetmap-carto/blob/597d138c85eb11428a41ea332332b284e8041f48/project.mml#L751-L758) to increase performance.
+
 
 ### How build process works
 
