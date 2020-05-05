@@ -21,11 +21,11 @@ const FEATURE_GROUPS = {
     'highway_residential',
     // Street in a residental area e.g. Paimentie, speed limit max 30km/h, count: 1 161 247 rows
     'highway_living_street',
-    // count: 12 722 846
+    // count: 12 722 846 rows
     'highway_unclassified',
-    // count: 164 102
+    // count: 164 102 rows
     'highway_road',
-    // count: 5 203
+    // count: 31 264 766 rows
     'highway_service',
   ],
   // Other walking paths
@@ -82,7 +82,7 @@ const DEFAULT_STYLE = {
       }
     },
     {
-      minZ: 7,
+      minZ: 8,
       features: ['highway_primary', 'highway_secondary'],
       values: {
         'line-width': { from: 0, to: 3.5 },
