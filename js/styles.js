@@ -4,16 +4,21 @@ const { scaleFromEasing, extendStyle } = require('./utils');
 
 // To find out how many road rows there are on the planet per feature type, see README.md
 const FEATURE_GROUPS = {
-  // Real motorway, speed limit 120, count: 1 186 943 rows
+  // Real motorway, speed limit 120
+  // count: 1 186 943 rows
   roadLevel1: ['highway_motorway'],
-  // Big road, speed limit 80-100, count: 1 308 437 rows
+  // Big road, speed limit 80-100
+  // count: 1 308 437 rows
   roadLevel2: ['highway_trunk'],
   roadLevel3: [
-    // e.g. Mannerheimintie, speed limit 40-80, count: 2 729 494 rows
+    // e.g. Mannerheimintie, speed limit 40-80
+    // count: 2 729 494 rows
     'highway_primary',
-    // e.g. Kaivokatu, speed limit 40-80, count: 3 836 121 rows
+    // e.g. Kaivokatu, speed limit 40-80
+    // count: 3 836 121 rows
     'highway_secondary',
-    // e.g. Simonkatu, speed limit 30-80, count: 5 767 143 rows
+    // e.g. Simonkatu, speed limit 30-80
+    // count: 5 767 143 rows
     'highway_tertiary',
   ],
   roadLevel4: [
@@ -40,9 +45,9 @@ const FEATURE_GROUPS = {
   ],
   railway: [
     'railway_rail',  // count: 724 638 rows
-    'railway_INT-spur-siding-yard',  // count: 886862 rows
-    'railway_light_rail',  // count:  rows
-    'railway_funicular',  // count:  rows
+    'railway_INT-spur-siding-yard',  // count: 886 862 rows
+    'railway_light_rail',  // count: 20 815 rows
+    'railway_funicular',  // count: 1 070 rows
     'railway_narrow_gauge',  // count:  rows
     'railway_miniature',  // count:  rows
     'railway_preserved',  // count:  rows
@@ -72,22 +77,24 @@ const DEFAULT_STYLE = {
   roadLevel3: [
     {
       minZ: 0,
-      // Override default features
-      // We can't show all level 3 roads at low zoom levels as it generates too heavy SQL queries
-      features: ['highway_primary', 'highway_secondary'],
+      features: ['highway_primary', 'highway_secondary', 'highway_tertiary'],
       values: {
         'line-width': { from: 0, to: 3.5 },
         'line-color': { from: '#666', to: '#272727' }
       }
     },
+    /*
+    // This is not needed after we did SQL query optimisations for low level roads
+    // Limit the amount of features we show at very low zoom levels
     {
-      minZ: 9,
-      features: ['highway_tertiary'],
+      minZ: 6,
+      features: ['highway_primary', 'highway_secondary', 'highway_tertiary'],
       values: {
         'line-width': { from: 0, to: 3.5 },
         'line-color': { from: '#666', to: '#272727' }
       }
     },
+    */
   ],
   // Matching order happens from the highest minZ to lowest
   // "The street-level details override the country level ones"
@@ -217,11 +224,12 @@ function createFeatureStyles(_opts) {
 function createStyles(opts) {
   const styles = [];
 
+  // The visibility zoom levels are controlled via project-template.mml
   styles.push({
     template: `
       #roads-fill[zoom >= 0],
       #bridges[zoom >= 0],
-      #tunnels[zoom >= 9] {
+      #tunnels[zoom >= 0] {
         ::fill {
           {{featureStyles}}
         }
@@ -234,6 +242,32 @@ function createStyles(opts) {
     styles.push({
       template: `
         #bridges[zoom >= 0] {
+          ::casing {
+            {{featureStyles}}
+          }
+        }
+      `,
+      featureStyles: createFeatureStyles(opts)
+    });
+  }
+
+  styles.push({
+    template: `
+      #roads-fill-optimized[zoom >= 0],
+      #bridges-optimized[zoom >= 0],
+      #tunnels-optimized[zoom >= 0] {
+        ::fill {
+          {{featureStyles}}
+        }
+      }
+    `,
+    featureStyles: createFeatureStyles(opts)
+  });
+
+  if (!opts.skipBridgeCasing) {
+    styles.push({
+      template: `
+        #bridges-optimized[zoom >= 0] {
           ::casing {
             {{featureStyles}}
           }
