@@ -1,12 +1,3 @@
-
-@building-line: darken(@building-fill, 15%);
-@building-low-zoom: darken(@building-fill, 4%);
-
-@building-major-fill: darken(@building-fill, 5%);
-@building-major-line: darken(@building-major-fill, 25%);
-
-@building-aeroway-line: darken(@building-aeroway-fill, 8%);
-
 #buildings {
   [zoom >= 16] {
     polygon-fill: @building-low-zoom;

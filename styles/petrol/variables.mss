@@ -13,3 +13,10 @@ Map {
 @building-fill: #fff;
 @building-aeroway-fill: #fff;
 @bridge-color: @land-color;
+
+@bridge-color: @land-color;
+@building-fill: @land-color;
+@building-line: darken(@building-fill, 15%);
+@building-low-zoom: darken(@building-fill, 4%);
+@building-major-fill: darken(@building-major-fill, 5%);
+@building-major-line: darken(@building-major-fill, 25%);

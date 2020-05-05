@@ -10,9 +10,12 @@ Map {
 
 @admin-boundaries: #888;
 
-@building-fill: #fff;
-@building-aeroway-fill: #fff;
 @bridge-color: #ddd;
+@building-fill: #f9f9f9;
+@building-line: darken(@building-fill, 15%);
+@building-low-zoom: darken(@building-fill, 4%);
+@building-major-fill: darken(@building-major-fill, 5%);
+@building-major-line: darken(@building-major-fill, 25%);
 
 
 // Variables for water-features.mss. Only applies if it is included in the project.

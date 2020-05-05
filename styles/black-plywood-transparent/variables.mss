@@ -11,6 +11,9 @@ Map {
 
 @admin-boundaries: #fff;
 
-@building-fill: #fff;
-@building-aeroway-fill: #fff;
 @bridge-color: @land-color;
+@building-fill: #eee;
+@building-line: lighten(@building-fill, 15%);
+@building-low-zoom: lighten(@building-fill, 4%);
+@building-major-fill: lighten(@building-major-fill, 5%);
+@building-major-line: lighten(@building-major-fill, 25%);

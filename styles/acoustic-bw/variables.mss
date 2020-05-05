@@ -9,11 +9,12 @@ Map {
 @glacier-line: darken(@water-color, 8%);
 
 @admin-boundaries: #888;
-
-@building-fill: #fff;
-@building-aeroway-fill: #fff;
 @bridge-color: #888;
-
+@building-fill: #fff;
+@building-line: darken(@building-fill, 15%);
+@building-low-zoom: darken(@building-fill, 4%);
+@building-major-fill: darken(@building-fill, 5%);
+@building-major-line: darken(@building-major-fill, 25%);
 
 // Variables for water-features.mss. Only applies if it is included in the project.
 //
