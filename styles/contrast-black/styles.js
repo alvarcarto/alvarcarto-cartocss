@@ -113,20 +113,24 @@ stylesArray.push({
     }
   `,
   featureStyles: [
-    {
-      styles: (zoom) => {
-        if (zoom < 5 || zoom > 10) {
-          return {
-            'line-width': 0,
-          };
-        }
-
+    (zoom) => {
+      if (zoom < 5 || zoom > 10) {
         return {
+          features: null,
+          styles: {
+            'line-width': 0,
+          }
+        };
+      }
+
+      return {
+        features: null,
+        styles: {
           'line-width': scale(zoom, 2, 7),
           'line-color': '#fff',
-        };
-      },
-    },
+        }
+      };
+    }
   ]
 });
 

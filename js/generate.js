@@ -3,6 +3,10 @@ const _ = require('lodash');
 const stripIndent = require('strip-indent');
 const { indent, indentExceptFirst } = require('./utils');
 
+// This is a debug flag, which shouldn't be turned on in normal operation
+const DISALLOW_STYLE_OVERRIDING = false;
+
+
 function createStyleForZoomLevel(levelStyles, level) {
   const stylesArr = _.map(levelStyles, (val, key) => `${key}: ${val};`)
   return stripIndent(`
@@ -12,17 +16,28 @@ function createStyleForZoomLevel(levelStyles, level) {
   `).trim()
 }
 
+// This produces unoptimized carto css, but makes generation easier
 function renderStyle(style) {
-  const stylesByFeature = {}
+  const stylesByFeature = {};
   _.forEach(_.range(0, 17), (zoomLevel) => {
     _.forEach(style.featureStyles, (styleForGroup) => {
       // This iterates roadLevel1, roadLevel2 group etc..
       const group = styleForGroup(zoomLevel);
 
-      _.forEach(group.features, (featureName) => {
-        if (!_.isUndefined(_.get(stylesByFeature, [featureName, zoomLevel]))) {
-          console.error(stylesByFeature);
-          throw new Error(`Duplicate style definition found, ${featureName} and z${zoomLevel} already exists!`);
+      const resolvedFeatures = group.features
+        ? group.features
+        : ['ALL']  // Special case where the feature is already set in the template (e.g. contrast black countries)
+
+      _.forEach(resolvedFeatures, (featureName) => {
+        if (DISALLOW_STYLE_OVERRIDING) {
+          const existingStyles = _.get(stylesByFeature, [featureName, zoomLevel]);
+          if (!_.isUndefined(existingStyles) && !_.isEqual(existingStyles, group.styles)) {
+            // This might be an issue if styles accidentally override each other
+            console.error(stylesByFeature);
+            console.error(style.template)
+            console.error(group.styles, existingStyles)
+            console.warn(`Duplicate non-equal styles found, ${featureName} and z${zoomLevel} already exists!`);
+          }
         }
 
         if (!group.styles) {
@@ -39,6 +54,12 @@ function renderStyle(style) {
   });
 
   const featureStylesArr = _.map(stylesByFeature, (zoomLevelStyles, featureName) => {
+    if (featureName === 'ALL') {
+      return _.map(zoomLevelStyles, (levelStyle, zoomLevel) => {
+        return createStyleForZoomLevel(levelStyle, zoomLevel);
+      }).join('\n');
+    }
+
     const featureStr = `[feature = '${featureName}']`;
 
     const levelsStyleArr = _.map(zoomLevelStyles, (levelStyle, zoomLevel) => {
