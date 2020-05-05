@@ -14,5 +14,5 @@ Map {
 @building-fill: #eee;
 @building-line: lighten(@building-fill, 15%);
 @building-low-zoom: lighten(@building-fill, 4%);
-@building-major-fill: lighten(@building-major-fill, 5%);
+@building-major-fill: lighten(@building-fill, 5%);
 @building-major-line: lighten(@building-major-fill, 25%);
