@@ -2,29 +2,30 @@ const _ = require('lodash');
 const BezierEasing = require('bezier-easing');
 const { scaleFromEasing, extendStyle } = require('./utils');
 
+// To find out how many road rows there are on the planet per feature type, see README.md
 const FEATURE_GROUPS = {
-  // Real motorway, speed limit 120
+  // Real motorway, speed limit 120, count: 1 186 943 rows
   roadLevel1: ['highway_motorway'],
-  // Big road, speed limit 80-100
+  // Big road, speed limit 80-100, count: 1 308 437 rows
   roadLevel2: ['highway_trunk'],
   roadLevel3: [
-    /* e.g. Mannerheimintie, speed limit 40-80 */
+    // e.g. Mannerheimintie, speed limit 40-80, count: 2 729 494 rows
     'highway_primary',
-    /* e.g. Kaivokatu, speed limit 40-80 */
+    // e.g. Kaivokatu, speed limit 40-80, count: 3 836 121 rows
     'highway_secondary',
-    /* e.g. Simonkatu, speed limit 30-80 */
+    // e.g. Simonkatu, speed limit 30-80, count: 5 767 143 rows
     'highway_tertiary',
   ],
   roadLevel4: [
-    /* e.g. Annankatu, speed limit 30-60 */
+    // e.g. Annankatu, speed limit 30-60, count: 50 597 088 rows
     'highway_residential',
-    /*
-    Street in a residental area, speed limit max 30km/h
-    e.g. Paimentie
-    */
+    // Street in a residental area e.g. Paimentie, speed limit max 30km/h, count: 1 161 247 rows
     'highway_living_street',
+    // count: 12 722 846
     'highway_unclassified',
+    // count: 164 102
     'highway_road',
+    // count: 5 203
     'highway_service',
   ],
   // Other walking paths
@@ -69,10 +70,34 @@ const DEFAULT_STYLE = {
     'line-width': { from: 0, to: 4.0 },
     'line-color': { from: '#555', to: '#1a1a1a' }
   },
-  roadLevel3: {
-    'line-width': { from: 0, to: 3.5 },
-    'line-color': { from: '#666', to: '#272727' }
-  },
+  roadLevel3: [
+    {
+      minZ: 0,
+      // Override default features
+      // We can't show all level 3 roads at low zoom levels as it generates too heavy SQL queries
+      features: ['highway_primary'],
+      values: {
+        'line-width': { from: 0, to: 3.5 },
+        'line-color': { from: '#666', to: '#272727' }
+      }
+    },
+    {
+      minZ: 7,
+      features: ['highway_primary', 'highway_secondary'],
+      values: {
+        'line-width': { from: 0, to: 3.5 },
+        'line-color': { from: '#666', to: '#272727' }
+      }
+    },
+    {
+      minZ: 9,
+      features: ['highway_primary', 'highway_secondary', 'highway_tertiary'],
+      values: {
+        'line-width': { from: 0, to: 3.5 },
+        'line-color': { from: '#666', to: '#272727' }
+      }
+    },
+  ],
   // Matching order happens from the highest minZ to lowest
   // "The street-level details override the country level ones"
   roadLevel4: [
@@ -163,34 +188,37 @@ function createFeatureStyles(_opts) {
 
     // In case the group has been set to null
     if (!groupOpts) {
-      return {
-        features,
-        styles: () => null,
-      };
+      return () => ({ features, styles: null });
     }
 
-    return {
-      features,
-      styles: (zoom) => {
-        const attributes = {};
+    return (zoom) => {
+      let attributes = {};
+      let resolvedFeatures = features;
 
-        if (_.isPlainObject(groupOpts)) {
-          setAttrs(attributes, groupOpts, zoom);
-        } else if (_.isArray(groupOpts)) {
-          const sorted = _.orderBy(groupOpts, item => item.minZ, 'desc');
-
-          const matching = _.find(sorted, (item) => zoom >= item.minZ);
-          if (!matching) {
-            return null;
-          }
-
-          setAttrs(attributes, matching.values, zoom);
-        } else {
-          throw new Error(`Unknown type for group options, array or object expected. Group: ${group}`);
-        }
-
-        return attributes;
+      if (!_.isPlainObject(groupOpts) && !_.isArray(groupOpts)) {
+        throw new Error(`Unknown type for group options, array or object expected. Group: ${group}`);
       }
+
+      if (_.isPlainObject(groupOpts)) {
+        setAttrs(attributes, groupOpts, zoom);
+      } else if (_.isArray(groupOpts)) {
+        const sorted = _.orderBy(groupOpts, item => item.minZ, 'desc');
+
+        const matching = _.find(sorted, (item) => zoom >= item.minZ);
+        if (matching) {
+          setAttrs(attributes, matching.values, zoom);
+          if (matching.features) {
+            resolvedFeatures = matching.features;
+          }
+        } else {
+          attributes = null;
+        }
+      }
+
+      return {
+        features: resolvedFeatures,
+        styles: attributes
+      };
     }
   });
 }

@@ -3,12 +3,7 @@ const _ = require('lodash');
 const stripIndent = require('strip-indent');
 const { indent, indentExceptFirst } = require('./utils');
 
-function createStyleForZoomLevel(group, level) {
-  const levelStyles = group.styles(level);
-  if (!levelStyles) {
-    return null;
-  }
-
+function createStyleForZoomLevel(levelStyles, level) {
   const stylesArr = _.map(levelStyles, (val, key) => `${key}: ${val};`)
   return stripIndent(`
     [zoom >= ${level}] {
@@ -17,29 +12,48 @@ function createStyleForZoomLevel(group, level) {
   `).trim()
 }
 
-function createZoomLevelsForGroup(group, indent) {
-  const arr = _.map(_.range(0, 17), (level) => {
-    const zoomStyle = createStyleForZoomLevel(group, level)
-    return zoomStyle
+function renderStyle(style) {
+  const stylesByFeature = {}
+  _.forEach(_.range(0, 17), (zoomLevel) => {
+    _.forEach(style.featureStyles, (styleForGroup) => {
+      // This iterates roadLevel1, roadLevel2 group etc..
+      const group = styleForGroup(zoomLevel);
+
+      _.forEach(group.features, (featureName) => {
+        if (!_.isUndefined(_.get(stylesByFeature, [featureName, zoomLevel]))) {
+          console.error(stylesByFeature);
+          throw new Error(`Duplicate style definition found, ${featureName} and z${zoomLevel} already exists!`);
+        }
+
+        if (!group.styles) {
+          return;
+        }
+
+        if (!_.has(stylesByFeature, featureName)) {
+          stylesByFeature[featureName] = { [zoomLevel]: group.styles }
+        } else {
+          stylesByFeature[featureName][zoomLevel] = group.styles;
+        }
+      });
+    });
   });
 
-  return _.filter(arr, i => !_.isNull(i)).join(' ')
-}
+  const featureStylesArr = _.map(stylesByFeature, (zoomLevelStyles, featureName) => {
+    const featureStr = `[feature = '${featureName}']`;
 
-function renderStyle(style) {
-  const featureStyles = _.map(style.featureStyles, (group) => {
-    if (!group.features) {
-      return createZoomLevelsForGroup(group)
-    }
+    const levelsStyleArr = _.map(zoomLevelStyles, (levelStyle, zoomLevel) => {
+      return createStyleForZoomLevel(levelStyle, zoomLevel);
+    });
 
-    const features = _.map(group.features, name => `[feature = '${name}']`).join(',\n').trim()
-    const a = stripIndent(`
-      ${indentExceptFirst(features, 3)} {
-        ${indentExceptFirst(createZoomLevelsForGroup(group), 4)}
+    const styleStr = stripIndent(`
+      ${indentExceptFirst(featureStr, 3)} {
+        ${indentExceptFirst(levelsStyleArr.join('\n'), 4)}
       }
     `)
-    return a
-  }).join('').trim()
+    return styleStr;
+  });
+
+  const featureStylesStr = _.flatten(featureStylesArr).join('').trim();
 
   const { template } = style;
   const lines = _.map(template.split('\n'), line => {
@@ -47,7 +61,7 @@ function renderStyle(style) {
       return line;
     }
     const indentLevel = (line.length - _.trimStart(line, ' ').length) / 2;
-    return indent(featureStyles, indentLevel);
+    return indent(featureStylesStr, indentLevel);
   });
 
   console.log(stripIndent(lines.join('\n')))

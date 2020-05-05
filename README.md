@@ -103,3 +103,102 @@ python3 tools/get-shapefiles.py -f -d ../dist/data/
 
 To see exact names of data layers, use OpenStreeMap Editor: https://www.openstreetmap.org/edit. You need to login first.
 
+
+
+## Analyzing road counts
+
+To estimate how many roads there are with certain feature, use the explain query below.
+The query has been formed from the `base/project-template.mml` roads_sql table. ORDER BY was manually
+removed from the query since it's not needed here and makes it very intensive.
+
+The response will look like:
+```
+   ->  Append  (cost=1000.00..33820224.54 rows=767782 width=0)
+         ->  Subquery Scan on "*SELECT* 1"  (cost=1000.00..13811514.83 rows=754462 width=0)
+```
+
+the total estimated rows is written as `rows=767782`. You can optionally use `EXPLAIN analyze` to actually
+execute the query. It took 200 seconds with highway_motorway.
+
+**Query:**
+
+```sql
+EXPLAIN
+    SELECT COUNT(*) FROM
+        (SELECT
+          way,
+          (CASE WHEN feature IN ('highway_motorway_link', 'highway_trunk_link', 'highway_primary_link', 'highway_secondary_link', 'highway_tertiary_link') THEN substr(feature, 0, length(feature)-4) ELSE feature END) AS feature,
+          horse,
+          foot,
+          bicycle,
+          tracktype,
+          int_surface,
+          access,
+          construction,
+          service,
+          link,
+          layernotnull
+        FROM ( -- subselect that contains both roads and rail/aero
+          SELECT
+              way,
+              ('highway_' || highway) AS feature, --only motorway to tertiary links are accepted later on
+              horse,
+              foot,
+              bicycle,
+              tracktype,
+              CASE WHEN surface IN ('unpaved', 'compacted', 'dirt', 'earth', 'fine_gravel', 'grass', 'grass_paver', 'gravel', 'ground',
+                                    'mud', 'pebblestone', 'salt', 'sand', 'woodchips', 'clay', 'ice', 'snow') THEN 'unpaved'
+                WHEN surface IN ('paved', 'asphalt', 'cobblestone', 'cobblestone:flattened', 'sett', 'concrete', 'concrete:lanes',
+                                    'concrete:plates', 'paving_stones', 'metal', 'wood', 'unhewn_cobblestone') THEN 'paved'
+              END AS int_surface,
+              CASE WHEN access IN ('destination') THEN 'destination'::text
+                WHEN access IN ('no', 'private') THEN 'no'::text
+              END AS access,
+              construction,
+              CASE
+                WHEN service IN ('parking_aisle', 'drive-through', 'driveway') OR leisure IN ('slipway') THEN 'INT-minor'::text
+                ELSE 'INT-normal'::text
+              END AS service,
+              CASE
+                WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary_link') THEN 'yes'
+                ELSE 'no'
+              END AS link,
+              COALESCE(layer,0) AS layernotnull,
+              osm_id,
+              z_order
+            FROM planet_osm_line
+            WHERE (tunnel IS NULL OR NOT tunnel IN ('yes', 'building_passage'))
+              AND (covered IS NULL OR NOT covered = 'yes')
+              AND (bridge IS NULL OR NOT bridge IN ('yes', 'boardwalk', 'cantilever', 'covered', 'low_water_crossing', 'movable', 'trestle', 'viaduct'))
+              AND highway IS NOT NULL -- end of road select
+          UNION ALL
+          SELECT
+              way,
+              ('railway_' || (CASE WHEN railway = 'preserved' AND service IN ('spur', 'siding', 'yard') THEN 'INT-preserved-ssy'::text
+                                    WHEN (railway = 'rail' AND service IN ('spur', 'siding', 'yard')) THEN 'INT-spur-siding-yard'
+                                    WHEN (railway = 'tram' AND service IN ('spur', 'siding', 'yard')) THEN 'tram-service'
+                                    ELSE railway END)) AS feature,
+              horse,
+              foot,
+              bicycle,
+              tracktype,
+              'null',
+              CASE
+                WHEN access IN ('destination') THEN 'destination'::text
+                WHEN access IN ('no', 'private') THEN 'no'::text
+              END AS access,
+              construction,
+              CASE WHEN service IN ('parking_aisle', 'drive-through', 'driveway') OR leisure IN ('slipway') THEN 'INT-minor'::text ELSE 'INT-normal'::text END AS service,
+              'no' AS link,
+              COALESCE(layer,0) AS layernotnull,
+              osm_id,
+              z_order
+            FROM planet_osm_line
+            WHERE (tunnel IS NULL OR NOT tunnel IN ('yes', 'building_passage'))
+              AND (covered IS NULL OR NOT covered = 'yes')
+              AND (bridge IS NULL OR NOT bridge IN ('yes', 'boardwalk', 'cantilever', 'covered', 'low_water_crossing', 'movable', 'trestle', 'viaduct'))
+              AND railway IS NOT NULL -- end of rail select
+          ) AS features
+        ) AS roads_sql
+    WHERE roads_sql.feature = 'highway_motorway';
+```
