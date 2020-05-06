@@ -60,7 +60,8 @@ function renderStyle(style) {
       }).join('\n');
     }
 
-    const featureStr = `[feature = '${featureName}']`;
+    const keyword = style.keyword || 'feature';
+    const featureStr = `[${keyword} = '${featureName}']`;
 
     const levelsStyleArr = _.map(zoomLevelStyles, (levelStyle, zoomLevel) => {
       return createStyleForZoomLevel(levelStyle, zoomLevel);

@@ -1263,7 +1263,7 @@ Layer:
         ) AS aeroways
     properties:
       cache-features: true
-      minzoom: 11
+      minzoom: 9
   - id: necountries
     geometry: linestring
     <<: *extents84

@@ -58,11 +58,14 @@ const FEATURE_GROUPS = {
     'railway_platform',  // count: 56 093 rows
     'railway_turntable',  // count: 2 104 rows
   ],
-  aeroway: [
-    'aeroway_runway',  // count: 0 rows
-    'aeroway_taxiway',  // count: 0 rows
-  ]
 }
+
+const AEROWAY_FEATURE_GROUPS = {
+  aeroway: [
+    'runway',
+    'taxiway',
+  ]
+};
 
 const DEFAULT_STYLE = {
   roadLevel1: {
@@ -129,8 +132,8 @@ const DEFAULT_STYLE = {
     'line-color': { from: '#999', to: '#666' }
   },
   aeroway: {
-    'line-width': { from: 0, to: 0.5 },
-    'line-color': { from: '#999', to: '#666' }
+    'line-width': { from: 0, to: 1 },
+    'line-color': { from: '#777', to: '#222' }
   },
   // Edited with http://greweb.me/bezier-easing-editor/example/
   // Idea is that in lower zoom levels the roads should be thin and exponentially get thicker at
@@ -142,7 +145,6 @@ const DEFAULT_STYLE = {
   },
   featureGroups: FEATURE_GROUPS,
 };
-
 
 function getDefaultStyle() {
   return _.cloneDeep(DEFAULT_STYLE);
@@ -276,6 +278,21 @@ function createStyles(opts) {
       featureStyles: createFeatureStyles(opts)
     });
   }
+
+  const aerowayOpts = _.extend(opts, {
+    featureGroups: AEROWAY_FEATURE_GROUPS
+  });
+  styles.push({
+    template: `
+      #aeroways[zoom >= 0] {
+        ::fill {
+          {{featureStyles}}
+        }
+      }
+    `,
+    featureStyles: createFeatureStyles(aerowayOpts),
+    keyword: 'aeroway'
+  });
 
   return styles;
 }

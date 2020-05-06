@@ -71,7 +71,7 @@ const contrastBlackStyle = {
     {
       minZ: 10,
       values: {
-        'line-width': { from: 0, to: 2 },
+        'line-width': { from: 0, to: 4 },
         'line-color': { from: '#fff', to: '#fff' }
       },
     }
