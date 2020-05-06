@@ -8,9 +8,10 @@ const sharp = require('sharp');
 const request = require('request-promise');
 const prettyBytes = require('pretty-bytes');
 
-const OLD_MAP_STYLE = process.argv[2] || 'bw';
-const NEW_MAP_STYLE = process.argv[3] || OLD_MAP_STYLE;
+const NEW_MAP_STYLE = process.argv[2] || 'bw';
+const OLD_MAP_STYLE = process.argv[3] || NEW_MAP_STYLE;
 const WRITE_DIFF = false;
+const SKIP_OLD = process.argv.length < 4;
 
 // NOTE: Keep in mind that some really large cities might look bad even if Helsinki looks OK
 const locations = [
@@ -96,7 +97,7 @@ async function resizeToHeight(imgBuffer, height) {
 
 async function main() {
   // const zoomLevels = [9, 10, 11, 12, 13, 14, 15, 16];
-  const zoomLevels = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+  const zoomLevels = [9, 10, 11, 12, 13, 14, 15, 16];
   // const zoomLevels = _.reverse(_.range(1, 18));
 
   await BPromise.each(zoomLevels, async (zoomLevel) => {
@@ -118,7 +119,11 @@ async function main() {
 
       const oldImageName = `images/diff/${OLD_MAP_STYLE}-${NEW_MAP_STYLE}-z${zoomLevel}-${locIndex}-old.png`;
       const oldExists = fs.existsSync(getPath(oldImageName));
-      if (!oldExists) {
+      if (SKIP_OLD) {
+        console.log(`SKIP_OLD=true skipping download ${oldImageName} ..`);
+      } else if (oldExists) {
+        console.log(`Old file ${oldImageName} exists, skipping download ..`);
+      } else {
         const oldImage = await downloadImage('http://54.36.173.210:8001', location, {
           zoom: zoomLevel,
           // Gains access to our internal render api, it is ok-level risk for private repos.
@@ -126,11 +131,9 @@ async function main() {
           mapStyle: OLD_MAP_STYLE,
         });
         await fs.writeFileAsync(getPath(oldImageName), oldImage, { encoding: null });
-      } else {
-        console.log(`${oldImageName} exists, skipping download..`);
       }
 
-      if (WRITE_DIFF) {
+      if (!SKIP_OLD && WRITE_DIFF) {
         const diffImageName = `images/diff/${OLD_MAP_STYLE}-${NEW_MAP_STYLE}-z${zoomLevel}-${locIndex}-diff.png`;
         const diff = new BlinkDiff({
           imageAPath: getPath(oldImageName),
