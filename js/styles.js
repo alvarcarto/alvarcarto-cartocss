@@ -48,19 +48,19 @@ const FEATURE_GROUPS = {
     'railway_INT-spur-siding-yard',  // count: 886 862 rows
     'railway_light_rail',  // count: 20 815 rows
     'railway_funicular',  // count: 1 070 rows
-    'railway_narrow_gauge',  // count:  rows
-    'railway_miniature',  // count:  rows
-    'railway_preserved',  // count:  rows
-    'railway_INT-preserved-ssy',  // count:  rows
-    'railway_monorail',  // count:  rows
-    'railway_construction',  // count:  rows
-    'railway_disused',  // count:  rows
-    'railway_platform',  // count:  rows
-    'railway_turntable',  // count:  rows
+    'railway_narrow_gauge',  // count: 33 430 rows
+    'railway_miniature',  // count: 5 742 rows
+    'railway_preserved',  // count: 5 135 rows
+    'railway_INT-preserved-ssy',  // count: 2 680 rows
+    'railway_monorail',  // count: 1 614 rows
+    'railway_construction',  // count: 9 523 rows
+    'railway_disused',  // count: 92 697 rows
+    'railway_platform',  // count: 56 093 rows
+    'railway_turntable',  // count: 2 104 rows
   ],
   aeroway: [
-    'aeroway_runway',  // count:  rows
-    'aeroway_taxiway',  // count:  rows
+    'aeroway_runway',  // count: 0 rows
+    'aeroway_taxiway',  // count: 0 rows
   ]
 }
 

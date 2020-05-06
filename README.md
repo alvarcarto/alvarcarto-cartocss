@@ -204,3 +204,142 @@ EXPLAIN
         ) AS roads_sql
     WHERE roads_sql.feature = 'highway_motorway';
 ```
+
+
+
+## Optimizing roads query
+
+The query below returns all roads for given area (limited with ST_SetSRID if I understand correctly). The query is part of the OSM render stack, originated from here: https://github.com/gravitystorm/openstreetmap-carto/blob/597d138c85eb11428a41ea332332b284e8041f48/project.mml#L672.
+It will be executed when map tile is requested and the tile image has not been yet cached to disk.
+
+The whole database containing osm planet data is around 500GB on disk. However the query only fetches roads from `osm_planet_line` table,
+which contains `200 919 055` rows.
+
+
+
+### Explain analyze results
+
+```sql
+                                                                                                                                                                                                                                                                            QUERY PLAN
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Subquery Scan on roads_sql  (cost=10795766.32..10961186.81 rows=4411213 width=64) (actual time=85682.250..88754.771 rows=4305385 loops=1)
+   ->  Sort  (cost=10795766.32..10806794.35 rows=4411213 width=635) (actual time=85682.232..86446.105 rows=4305385 loops=1)
+         Sort Key: "*SELECT* 1".layernotnull, "*SELECT* 1".z_order, (CASE WHEN ("substring"("*SELECT* 1".feature, 1, 8) = 'railway_'::text) THEN 2 ELSE 1 END), (CASE WHEN ("*SELECT* 1".feature = ANY ('{railway_INT-preserved-ssy,railway_INT-spur-siding-yard,railway_tram-service}'::text[])) THEN 0 ELSE 1 END), (CASE WHEN ("*SELECT* 1".access = ANY ('{no,private}'::text[])) THEN 0 WHEN ("*SELECT* 1".access = 'destination'::text) THEN 1 ELSE 2 END), (CASE WHEN ("*SELECT* 1".int_surface = 'unpaved'::text) THEN 0 ELSE 2 END), "*SELECT* 1".osm_id
+         Sort Method: quicksort  Memory: 1849486kB
+         ->  Result  (cost=133014.27..10308928.44 rows=4411213 width=635) (actual time=8817.394..17055.073 rows=4305385 loops=1)
+               ->  Append  (cost=133014.27..10132479.92 rows=4411213 width=395) (actual time=8817.385..15310.492 rows=4305385 loops=1)
+                     ->  Subquery Scan on "*SELECT* 1"  (cost=133014.27..5223847.72 rows=4334682 width=395) (actual time=8817.384..13603.950 rows=4239303 loops=1)
+                           ->  Bitmap Heap Scan on planet_osm_line  (cost=133014.27..5180500.90 rows=4334682 width=619) (actual time=8817.384..13274.341 rows=4239303 loops=1)
+                                 Recheck Cond: (way && '01030000A0110F00000100000005000000CC183A68F4A92C41D257E2E334785B410000000000000000CC183A68F4A92C41066FF8FE585161410000000000000000A4922B4E777F4541066FF8FE585161410000000000000000A4922B4E777F4541D257E2E334785B410000000000000000CC183A68F4A92C41D257E2E334785B410000000000000000'::geometry)
+                                 Filter: ((highway IS NOT NULL) AND ((tunnel IS NULL) OR (tunnel <> ALL ('{yes,building_passage}'::text[]))) AND ((covered IS NULL) OR (covered <> 'yes'::text)) AND ((bridge IS NULL) OR (bridge <> ALL ('{yes,boardwalk,cantilever,covered,low_water_crossing,movable,trestle,viaduct}'::text[]))))
+                                 Rows Removed by Filter: 1723208
+                                 Heap Blocks: exact=255256
+                                 ->  Bitmap Index Scan on planet_osm_line_way_idx  (cost=0.00..131930.60 rows=5771793 width=0) (actual time=8748.727..8748.727 rows=5962511 loops=1)
+                                       Index Cond: (way && '01030000A0110F00000100000005000000CC183A68F4A92C41D257E2E334785B410000000000000000CC183A68F4A92C41066FF8FE585161410000000000000000A4922B4E777F4541066FF8FE585161410000000000000000A4922B4E777F4541D257E2E334785B410000000000000000CC183A68F4A92C41D257E2E334785B410000000000000000'::geometry)
+                     ->  Subquery Scan on "*SELECT* 2"  (cost=132949.73..4908632.20 rows=76531 width=395) (actual time=740.626..1485.598 rows=66082 loops=1)
+                           ->  Gather  (cost=132949.73..4907866.89 rows=76531 width=619) (actual time=740.625..1483.965 rows=66082 loops=1)
+                                 Workers Planned: 2
+                                 Workers Launched: 2
+                                 ->  Parallel Bitmap Heap Scan on planet_osm_line planet_osm_line_1  (cost=131949.73..4898041.91 rows=31888 width=619) (actual time=736.054..1515.276 rows=22027 loops=3)
+                                       Recheck Cond: (way && '01030000A0110F00000100000005000000CC183A68F4A92C41D257E2E334785B410000000000000000CC183A68F4A92C41066FF8FE585161410000000000000000A4922B4E777F4541066FF8FE585161410000000000000000A4922B4E777F4541D257E2E334785B410000000000000000CC183A68F4A92C41D257E2E334785B410000000000000000'::geometry)
+                                       Filter: ((railway IS NOT NULL) AND ((tunnel IS NULL) OR (tunnel <> ALL ('{yes,building_passage}'::text[]))) AND ((covered IS NULL) OR (covered <> 'yes'::text)) AND ((bridge IS NULL) OR (bridge <> ALL ('{yes,boardwalk,cantilever,covered,low_water_crossing,movable,trestle,viaduct}'::text[]))))
+                                       Rows Removed by Filter: 1965476
+                                       Heap Blocks: exact=77480
+                                       ->  Bitmap Index Scan on planet_osm_line_way_idx  (cost=0.00..131930.60 rows=5771793 width=0) (actual time=643.579..643.579 rows=5962511 loops=1)
+                                             Index Cond: (way && '01030000A0110F00000100000005000000CC183A68F4A92C41D257E2E334785B410000000000000000CC183A68F4A92C41066FF8FE585161410000000000000000A4922B4E777F4541066FF8FE585161410000000000000000A4922B4E777F4541D257E2E334785B410000000000000000CC183A68F4A92C41D257E2E334785B410000000000000000'::geometry)
+ Planning time: 1.762 ms
+ Execution time: 89015.260 ms
+(27 rows)
+```
+
+
+### Actual query
+
+```sql
+EXPLAIN analyze SELECT ST_AsBinary("way") AS geom,"feature" FROM (SELECT
+    way,
+    (CASE WHEN feature IN ('highway_motorway_link', 'highway_trunk_link', 'highway_primary_link', 'highway_secondary_link', 'highway_tertiary_link') THEN substr(feature, 0, length(feature)-4) ELSE feature END) AS feature,
+    horse,
+    foot,
+    bicycle,
+    tracktype,
+    int_surface,
+    access,
+    construction,
+    service,
+    link,
+    layernotnull
+  FROM ( -- subselect that contains both roads and rail/aero
+    SELECT
+        way,
+        ('highway_' || highway) AS feature, --only motorway to tertiary links are accepted later on
+        horse,
+        foot,
+        bicycle,
+        tracktype,
+        CASE WHEN surface IN ('unpaved', 'compacted', 'dirt', 'earth', 'fine_gravel', 'grass', 'grass_paver', 'gravel', 'ground',
+                              'mud', 'pebblestone', 'salt', 'sand', 'woodchips', 'clay', 'ice', 'snow') THEN 'unpaved'
+          WHEN surface IN ('paved', 'asphalt', 'cobblestone', 'cobblestone:flattened', 'sett', 'concrete', 'concrete:lanes',
+                              'concrete:plates', 'paving_stones', 'metal', 'wood', 'unhewn_cobblestone') THEN 'paved'
+        END AS int_surface,
+        CASE WHEN access IN ('destination') THEN 'destination'::text
+          WHEN access IN ('no', 'private') THEN 'no'::text
+        END AS access,
+        construction,
+        CASE
+          WHEN service IN ('parking_aisle', 'drive-through', 'driveway') OR leisure IN ('slipway') THEN 'INT-minor'::text
+          ELSE 'INT-normal'::text
+        END AS service,
+        CASE
+          WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary_link') THEN 'yes'
+          ELSE 'no'
+        END AS link,
+        COALESCE(layer,0) AS layernotnull,
+        osm_id,
+        z_order
+      FROM planet_osm_line
+      WHERE (tunnel IS NULL OR NOT tunnel IN ('yes', 'building_passage'))
+        AND (covered IS NULL OR NOT covered = 'yes')
+        AND (bridge IS NULL OR NOT bridge IN ('yes', 'boardwalk', 'cantilever', 'covered', 'low_water_crossing', 'movable', 'trestle', 'viaduct'))
+        AND highway IS NOT NULL -- end of road select
+    UNION ALL
+    SELECT
+        way,
+        ('railway_' || (CASE WHEN railway = 'preserved' AND service IN ('spur', 'siding', 'yard') THEN 'INT-preserved-ssy'::text
+                              WHEN (railway = 'rail' AND service IN ('spur', 'siding', 'yard')) THEN 'INT-spur-siding-yard'
+                              WHEN (railway = 'tram' AND service IN ('spur', 'siding', 'yard')) THEN 'tram-service'
+                              ELSE railway END)) AS feature,
+        horse,
+        foot,
+        bicycle,
+        tracktype,
+        'null',
+        CASE
+          WHEN access IN ('destination') THEN 'destination'::text
+          WHEN access IN ('no', 'private') THEN 'no'::text
+        END AS access,
+        construction,
+        CASE WHEN service IN ('parking_aisle', 'drive-through', 'driveway') OR leisure IN ('slipway') THEN 'INT-minor'::text ELSE 'INT-normal'::text END AS service,
+        'no' AS link,
+        COALESCE(layer,0) AS layernotnull,
+        osm_id,
+        z_order
+      FROM planet_osm_line
+      WHERE (tunnel IS NULL OR NOT tunnel IN ('yes', 'building_passage'))
+        AND (covered IS NULL OR NOT covered = 'yes')
+        AND (bridge IS NULL OR NOT bridge IN ('yes', 'boardwalk', 'cantilever', 'covered', 'low_water_crossing', 'movable', 'trestle', 'viaduct'))
+        AND railway IS NOT NULL -- end of rail select
+    ) AS features
+  ORDER BY
+    layernotnull,
+    z_order,
+    CASE WHEN substring(feature for 8) = 'railway_' THEN 2 ELSE 1 END,
+    CASE WHEN feature IN ('railway_INT-preserved-ssy', 'railway_INT-spur-siding-yard', 'railway_tram-service') THEN 0 ELSE 1 END,
+    CASE WHEN access IN ('no', 'private') THEN 0 WHEN access IN ('destination') THEN 1 ELSE 2 END,
+    CASE WHEN int_surface IN ('unpaved') THEN 0 ELSE 2 END,
+    osm_id
+) AS roads_sql WHERE "way" && ST_SetSRID('BOX3D(939258.2035682439 7200979.560689883,2817774.610704737 9079495.967826378)'::box3d, 3857);
+```
+
+By removing ORDER BY from the query at low zoom levels, we were able to increase the performance.
+
