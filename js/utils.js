@@ -63,7 +63,7 @@ function indent(str, level) {
 }
 
 function extendStyle(obj, ...sources) {
-  return _.mergeWith(obj, ...sources, (objValue, sourceValue) => {
+  return _.mergeWith({}, obj, ...sources, (objValue, sourceValue) => {
     if (_.isArray(objValue)) {
       return sourceValue;
     }

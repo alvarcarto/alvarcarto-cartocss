@@ -279,7 +279,7 @@ function createStyles(opts) {
     });
   }
 
-  const aerowayOpts = _.extend(opts, {
+  const aerowayOpts = _.extend({}, opts, {
     featureGroups: AEROWAY_FEATURE_GROUPS
   });
   styles.push({
